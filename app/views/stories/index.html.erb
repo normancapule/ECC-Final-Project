@@ -1,0 +1,27 @@
+<% title "Stories" %>
+
+<table>
+  <tr>
+    <th>Release</th>
+    <th>User</th>
+    <th>Priority</th>
+    <th>Story Name</th>
+    <th>Story Description</th>
+    <th>Status</th>
+  </tr>
+  <% for story in @stories %>
+    <tr>
+      <td><%= story.release_id %></td>
+      <td><%= story.user_id %></td>
+      <td><%= story.priority %></td>
+      <td><%= story.story_name %></td>
+      <td><%= story.story_description %></td>
+      <td><%= story.status %></td>
+      <td><%= link_to "Show", story %></td>
+      <td><%= link_to "Edit", edit_story_path(story) %></td>
+      <td><%= link_to "Destroy", story, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Story", new_story_path %></p>

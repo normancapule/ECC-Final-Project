@@ -1,0 +1,32 @@
+<% title "Story" %>
+
+<p>
+  <strong>Release:</strong>
+  <%= @story.release_id %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @story.user_id %>
+</p>
+<p>
+  <strong>Priority:</strong>
+  <%= @story.priority %>
+</p>
+<p>
+  <strong>Story Name:</strong>
+  <%= @story.story_name %>
+</p>
+<p>
+  <strong>Story Description:</strong>
+  <%= @story.story_description %>
+</p>
+<p>
+  <strong>Status:</strong>
+  <%= @story.status %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_story_path(@story) %> |
+  <%= link_to "Destroy", @story, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", stories_path %>
+</p>

@@ -8,3 +8,5 @@ gem 'devise'
 
 gem 'rake', '0.8.7'
 
+gem 'nifty-generators', '>= 0.4.0'
+gem "mocha", :group => :test

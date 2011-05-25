@@ -1,0 +1,20 @@
+<% title "Release" %>
+
+<p>
+  <strong>Project:</strong>
+  <%= @release.project_id %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @release.name %>
+</p>
+<p>
+  <strong>Date Released:</strong>
+  <%= @release.date_released %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_release_path(@release) %> |
+  <%= link_to "Destroy", @release, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", releases_path %>
+</p>
