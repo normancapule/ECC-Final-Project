@@ -10,11 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20110525081220) do
-=======
-ActiveRecord::Schema.define(:version => 20110525065119) do
->>>>>>> 3180ff411996f67a899db69518b1c68f0b907b03
 
   create_table "comments", :force => true do |t|
     t.integer  "story_id"
@@ -32,17 +28,6 @@ ActiveRecord::Schema.define(:version => 20110525065119) do
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
-=======
-  create_table "memberlists", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
->>>>>>> 3180ff411996f67a899db69518b1c68f0b907b03
   create_table "projects", :force => true do |t|
     t.integer  "user_id"
     t.string   "project_name"
