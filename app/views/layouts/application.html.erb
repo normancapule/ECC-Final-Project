@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ECCFinalProject</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-
- <div id="nav">
-        <% if user_signed_in? %>
-          Signed in as <%= current_user.name %></br>
-          Role <%= current_user.role %>
-        <%= link_to "Logout", destroy_user_session_path %>
-
-
-        <% end %>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag :defaults %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <div id="container">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+      <%= content_tag :h1, yield(:title) if show_title? %>
+      <%= yield %>
     </div>
-
-<%= yield %>
-
-</body>
+  </body>
 </html>
