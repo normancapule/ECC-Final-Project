@@ -1,0 +1,68 @@
+Objective: Create a tool to manage project objectives/goals as stories into a roadmaps/releases. 
+
+That would increase team collaboration and interactions.
+
+Features:
+
+- Supports Multiple Projects
+
+-> Only System Admin Users can create projects and assign Project Managers, Project Owners and Members to a project.
+
+-> Only System Admin Users can disable a project which makes it not viewable to the project members only. 
+
+- Story Tracking.
+
+= A story should have a name but not more than 140 characters.
+
+= should have a description. 
+
+-> Only Project Owner and Project Manager can create stories.
+
+-> As story should be under one Release at a time
+
+       -> A story without speciﬁed release should fall under the Backlogs list.
+
+-> Story can be assigned to a member at any time.
+
+-> In order for the team to collaborate, they should be able to comment on a story.
+
+-> In order for Project Owners and Managers to predict the team performance/speed,
+
+! ! a member should input or rate the story's complexity.
+
+-> Complexity should only be 1-5 ( 1-being a very small story to implement and 5-being a big story to implement)
+
+-> A story can have a multiple tags. eg( Admin , Users , Views)
+
+-> A story should haves workﬂow state. (see attached)
+
+-> A story should have a priority level as ( Hight, Normal, Low)
+
+- Release Crud.
+
+= A release should have name , date of release
+
+-> Only Project Owner and Project Manager can create releases.
+
+- Tag Crud.
+
+=> should only have a name but not more than 60 characters.
+
+-> A tag should only be visible to the project it was created.
+
+-> A tag cannot be shared by other projects. 
+
+Admin Page:
+
+- User Crud
+
+- Assign Users to Project
+
+- Assign Roles per Project
+
+User Page
+
+- Ability to change password
+
+- Ability to view Projects belong to.
+o
