@@ -5,7 +5,10 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project])
+    @project.user_id = current_user.id
+    
     if @project.save
+      @userproject = Userproject.create(:user_id=> current_user.id, :project_id => @project.id, :role => "Creator" )
       redirect_to @project, :notice => "Successfully created project."
     else
       render :action => 'new'

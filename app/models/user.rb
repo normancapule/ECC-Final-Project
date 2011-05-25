@@ -18,4 +18,7 @@ class User < ActiveRecord::Base
   has_many :stories
   has_many :comments
   has_many :logs
+  
+  scope :admin, where(:role => 'Admin')
+  scope :user, where(:role => 'User')
 end
