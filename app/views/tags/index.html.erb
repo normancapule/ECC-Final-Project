@@ -1,0 +1,21 @@
+<% title "Tags" %>
+
+<table>
+  <tr>
+    <th>Story</th>
+    <th>User</th>
+    <th>Tag Content</th>
+  </tr>
+  <% for tag in @tags %>
+    <tr>
+      <td><%= tag.story_id %></td>
+      <td><%= tag.user_id %></td>
+      <td><%= tag.tag_content %></td>
+      <td><%= link_to "Show", tag %></td>
+      <td><%= link_to "Edit", edit_tag_path(tag) %></td>
+      <td><%= link_to "Destroy", tag, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Tag", new_tag_path %></p>

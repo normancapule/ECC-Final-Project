@@ -1,0 +1,20 @@
+<% title "Log" %>
+
+<p>
+  <strong>User:</strong>
+  <%= @log.user_id %>
+</p>
+<p>
+  <strong>Project:</strong>
+  <%= @log.project_id %>
+</p>
+<p>
+  <strong>Content:</strong>
+  <%= @log.content %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_log_path(@log) %> |
+  <%= link_to "Destroy", @log, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", logs_path %>
+</p>

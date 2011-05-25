@@ -1,4 +1,12 @@
 ECCFinalProject::Application.routes.draw do
+  resources :logs
+
+  resources :ratings
+
+  resources :tags
+
+  resources :userprojects
+
   resources :releases
 
   resources :comments

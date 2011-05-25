@@ -1,0 +1,20 @@
+<% title "Tag" %>
+
+<p>
+  <strong>Story:</strong>
+  <%= @tag.story_id %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @tag.user_id %>
+</p>
+<p>
+  <strong>Tag Content:</strong>
+  <%= @tag.tag_content %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_tag_path(@tag) %> |
+  <%= link_to "Destroy", @tag, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", tags_path %>
+</p>

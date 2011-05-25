@@ -1,0 +1,23 @@
+<% title "Userprojects" %>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Project</th>
+    <th>Role</th>
+    <th>Role Description</th>
+  </tr>
+  <% for userproject in @userprojects %>
+    <tr>
+      <td><%= userproject.user_id %></td>
+      <td><%= userproject.project_id %></td>
+      <td><%= userproject.role %></td>
+      <td><%= userproject.role_description %></td>
+      <td><%= link_to "Show", userproject %></td>
+      <td><%= link_to "Edit", edit_userproject_path(userproject) %></td>
+      <td><%= link_to "Destroy", userproject, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Userproject", new_userproject_path %></p>

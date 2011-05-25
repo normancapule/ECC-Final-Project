@@ -1,0 +1,24 @@
+<% title "Userproject" %>
+
+<p>
+  <strong>User:</strong>
+  <%= @userproject.user_id %>
+</p>
+<p>
+  <strong>Project:</strong>
+  <%= @userproject.project_id %>
+</p>
+<p>
+  <strong>Role:</strong>
+  <%= @userproject.role %>
+</p>
+<p>
+  <strong>Role Description:</strong>
+  <%= @userproject.role_description %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_userproject_path(@userproject) %> |
+  <%= link_to "Destroy", @userproject, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", userprojects_path %>
+</p>

@@ -1,0 +1,20 @@
+<% title "Rating" %>
+
+<p>
+  <strong>Story:</strong>
+  <%= @rating.story_id %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @rating.user_id %>
+</p>
+<p>
+  <strong>Value:</strong>
+  <%= @rating.value %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_rating_path(@rating) %> |
+  <%= link_to "Destroy", @rating, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", ratings_path %>
+</p>
