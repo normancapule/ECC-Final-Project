@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110525061500) do
+ActiveRecord::Schema.define(:version => 20110525081220) do
 
   create_table "comments", :force => true do |t|
     t.integer  "story_id"
@@ -24,22 +24,6 @@ ActiveRecord::Schema.define(:version => 20110525061500) do
     t.integer  "user_id"
     t.integer  "project_id"
     t.string   "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "member_lists", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "memberlists", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,13 +52,6 @@ ActiveRecord::Schema.define(:version => 20110525061500) do
     t.datetime "updated_at"
   end
 
-  create_table "roles", :force => true do |t|
-    t.string   "role_name"
-    t.string   "role_description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "stories", :force => true do |t|
     t.integer  "release_id"
     t.integer  "user_id"
@@ -90,6 +67,15 @@ ActiveRecord::Schema.define(:version => 20110525061500) do
     t.integer  "story_id"
     t.integer  "user_id"
     t.string   "tag_content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "userprojects", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.string   "role"
+    t.string   "role_description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

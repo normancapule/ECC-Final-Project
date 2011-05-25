@@ -3,10 +3,9 @@ class User < ActiveRecord::Base
   validates_format_of :role, :with => /^(Admin)|(User)$/, :message=>"should be Admin or User"
   validates_format_of :email, :with => /^[\w\d]*[@][\w\d]*[\.][\w\d]*$/, :message=>"email is not applicable"
   
-  has_many :memberlists
-  has_many :roles, :through => :memberlists
-  has_many :projects, :through => :memberlists #joined a project "USER"
-  has_one :project  #created a project
+  has_many :userprojects
+  has_many :projects, :through => :userprojects
+  has_many :roles, :through => :userprojects
   has_many :ratings
   has_many :tags
   has_many :stories

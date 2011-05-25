@@ -1,6 +1,5 @@
 class Project < ActiveRecord::Base
-  belongs_to :user
-  has_many :memberlists
-  has_many :users, :through => :memberlists
+  has_many :userprojects
+  has_many :users, :through => :userprojects
   has_many :releases
 end
