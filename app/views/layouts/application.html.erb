@@ -8,6 +8,16 @@
 </head>
 <body>
 
+ <div id="nav">
+        <% if user_signed_in? %>
+          Signed in as <%= current_user.name %></br>
+          Role <%= current_user.role %>
+        <%= link_to "Logout", destroy_user_session_path %>
+
+
+        <% end %>
+    </div>
+
 <%= yield %>
 
 </body>
