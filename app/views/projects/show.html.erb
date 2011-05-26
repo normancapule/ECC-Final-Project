@@ -18,5 +18,6 @@
   <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", projects_path %> | 
   <%= link_to "Releases", project_releases_path(@project) %> |
-  <%= link_to "Stories", project_stories_path(@project) %>
+  <%= link_to "Stories", project_stories_path(@project) %> |
+  <%= link_to "Members", project_userprojects_path(@project) %>
 </p>

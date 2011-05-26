@@ -1,23 +1,19 @@
-<% title "Userprojects" %>
+<% title @project.project_name %>
 
 <table>
   <tr>
     <th>User</th>
-    <th>Project</th>
     <th>Role</th>
-    <th>Role Description</th>
   </tr>
   <% for userproject in @userprojects %>
     <tr>
-      <td><%= userproject.user_id %></td>
-      <td><%= userproject.project_id %></td>
+      <td><%= userproject.user.name %></td>
       <td><%= userproject.role %></td>
-      <td><%= userproject.role_description %></td>
-      <td><%= link_to "Show", userproject %></td>
-      <td><%= link_to "Edit", edit_userproject_path(userproject) %></td>
-      <td><%= link_to "Destroy", userproject, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Show", project_userproject_path(@project, userproject) %></td>
+      <td><%= link_to "Edit", edit_project_userproject_path(@project, userproject) %></td>
+      <td><%= link_to "Destroy", project_userproject_path(@project, userproject), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Userproject", new_userproject_path %></p>
+<p><%= link_to "Add Members", new_project_userproject_path %> | <%= link_to "Back to Project", project_path(@project) %></p>
