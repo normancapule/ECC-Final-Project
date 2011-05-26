@@ -3,7 +3,7 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "jndc6@yahoo.com"
+  config.mailer_sender = "eccfinal@yahoo.com"
   #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
