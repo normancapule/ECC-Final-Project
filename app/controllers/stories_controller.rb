@@ -16,6 +16,8 @@ class StoriesController < ApplicationController
     if @story.save
       redirect_to project_story_path(@project, @story), :notice => "Successfully created story."
     else
+      @releases = @project.releases
+      @priority_values = ["High", "Medium", "Low"]
       render :action => 'new'
     end
   end
