@@ -3,6 +3,6 @@
 <%= render 'form' %>
 
 <p>
-  <%= link_to "Show", @story %> |
-  <%= link_to "View All", stories_path %>
+  <%= link_to "Show", project_story_path(@story) %> |
+  <%= link_to "View All", project_stories_path %>
 </p>

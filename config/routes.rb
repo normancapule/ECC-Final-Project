@@ -1,20 +1,18 @@
 ECCFinalProject::Application.routes.draw do
-  resources :logs
+  #sresources :logs
 
-  resources :ratings
+  #resources :ratings
 
-  resources :tags
+  #resources :tags
 
-  resources :userprojects
+  #resources :comments
 
-  resources :releases
-
-  resources :comments
-
-  resources :stories
-
-  resources :projects
-
+  resources :projects do
+    resources :releases
+    resources :stories
+    resources :userprojects
+  end
+  
   root :to => "home#index"
 
   devise_for :users

@@ -14,7 +14,9 @@
 </p>
 
 <p>
-  <%= link_to "Edit", edit_release_path(@release) %> |
-  <%= link_to "Destroy", @release, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", releases_path %>
+  <%= link_to "Edit", edit_project_release_path(@project, @release) %> |
+  <%= link_to "Destroy", project_release_path(@project, @release), :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", project_releases_path(@project) %> |
+  <%= link_to "Stories", project_stories_path(@project) %>
+  
 </p>

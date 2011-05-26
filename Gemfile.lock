@@ -68,6 +68,7 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
+    tabs_on_rails (2.0.1)
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
@@ -85,3 +86,4 @@ DEPENDENCIES
   pg
   rails (= 3.0.7)
   rake (= 0.8.7)
+  tabs_on_rails

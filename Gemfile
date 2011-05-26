@@ -10,3 +10,5 @@ gem 'rake', '0.8.7'
 
 gem 'nifty-generators', '>= 0.4.0'
 gem "mocha", :group => :test
+
+gem "tabs_on_rails"

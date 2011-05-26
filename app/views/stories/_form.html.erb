@@ -1,12 +1,8 @@
-<%= form_for @story do |f| %>
+<%= form_for [@project,@story] do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :release_id %><br />
     <%= f.text_field :release_id %>
-  </p>
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
   </p>
   <p>
     <%= f.label :priority %><br />
@@ -23,6 +19,9 @@
   <p>
     <%= f.label :status %><br />
     <%= f.text_field :status %>
+  </p>
+  <p>
+    Release: <%= select_tag "hello", options_for_select(@releases.map {|u| "#{u.name}"}) %>
   </p>
   <p><%= f.submit %></p>
 <% end %>
