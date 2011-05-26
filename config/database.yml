@@ -1,8 +1,8 @@
 development:
   adapter: postgresql
   database: ecc_development
-  username: exist
-  password: 123qwe
+  username: normz
+  password: 10831215
 
 
 # Warning: The database defined as "test" will be erased and
@@ -11,13 +11,13 @@ development:
 test: &test
   adapter: postgresql
   database: ecc_test
-  username: exist
-  password: 123qwe
+  username: normz
+  password: 10831215
 
 
 production:
   adapter: postgresql
   database: ecc_production
-  username: exist
-  password: 123qwe
+  username: normz
+  password: 10831215
 

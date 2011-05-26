@@ -1,10 +1,11 @@
 class Story < ActiveRecord::Base
   belongs_to :release
+  belongs_to :project
   has_many :comments
   has_many :tags
   has_many :ratings
   belongs_to :user #the creator
-  serialize :tag #check for length <= 60
+  serialize :tag #NEEDED - check for length <= 60
   validates_presence_of :priority, :story_name, :story_description, :status
   validate :count
   

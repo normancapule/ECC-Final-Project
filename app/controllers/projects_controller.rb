@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @releases = @project.releases
+    @backlog_list = @project.stories.where(:release_id => nil)
   end
 
   def destroy

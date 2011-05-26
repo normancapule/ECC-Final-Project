@@ -1,7 +1,7 @@
 <%= form_for [@project,@story] do |f| %>
   <%= f.error_messages %>
   <p>
-    Release: <%= select_tag "release", options_for_select(@releases.map {|u| u.name}) %>
+    Release: <%= select_tag "release", options_for_select(@releases.map {|u| u.name}), :include_blank => true %>
   </p>
   <p>
     Priority: <%= select_tag "priority", options_for_select(@priority_values) %>
