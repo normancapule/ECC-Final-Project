@@ -7,6 +7,7 @@ class Story < ActiveRecord::Base
   belongs_to :user #the creator
   serialize :tag #NEEDED - check for length <= 60
   validates_presence_of :priority, :story_name, :story_description, :status
+  validates_uniqueness_of :story_name, :scope => :release_id
   validate :count
   
 

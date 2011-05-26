@@ -4,4 +4,5 @@ class Project < ActiveRecord::Base
   has_many :releases
   has_many :stories
   validates_presence_of :project_name
+  validates_uniqueness_of :project_name
 end
