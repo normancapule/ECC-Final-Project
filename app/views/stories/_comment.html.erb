@@ -1,0 +1,14 @@
+<%= form_for [@project, @story, @comment] do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+<% @comment_list.each do |comment| %>
+  <p><%=comment.comment%>
+  <%= link_to "Destroy", project_story_comment_path(@project, @story, comment), :confirm => 'Are you sure?', :method => :delete %>
+  </p>
+<% end %>

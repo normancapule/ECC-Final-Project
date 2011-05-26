@@ -30,3 +30,5 @@
   <%= link_to "Destroy", project_story_path(@project,@story), :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "Back to Release [#{@story.release.name}] Page", project_release_path(@project, @story.release ) %>
 </p>
+
+<%= render 'comment' %>

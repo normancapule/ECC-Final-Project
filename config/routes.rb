@@ -1,15 +1,13 @@
 ECCFinalProject::Application.routes.draw do
-  #sresources :logs
+  #resources :logs
 
   #resources :ratings
 
-  #resources :tags
-
-  #resources :comments
-
   resources :projects do
     resources :releases
-    resources :stories
+    resources :stories do 
+        resources :comments, :only => [:create, :update, :destroy]
+    end
     resources :userprojects
   end
   

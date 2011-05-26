@@ -7,6 +7,7 @@ class CreateStories < ActiveRecord::Migration
       t.string :story_name
       t.string :story_description
       t.string :status
+      t.string :tag
 
       t.timestamps
     end

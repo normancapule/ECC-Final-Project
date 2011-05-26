@@ -26,6 +26,8 @@ class StoriesController < ApplicationController
   def show
     @project = Project.find(params[:project_id])
     @story = Story.find(params[:id])
+    @comment = Comment.new
+    @comment_list = @story.comments
   end
 
   def destroy

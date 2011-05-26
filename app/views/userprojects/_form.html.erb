@@ -1,7 +1,5 @@
 <%= form_for [@project,@userproject] do |f| %>
   <%= f.error_messages %>
-
-
   <% for user in @user %>
     
       <%= check_box_tag "user_ids[]", user.id %>
