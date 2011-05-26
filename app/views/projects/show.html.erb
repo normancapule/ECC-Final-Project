@@ -16,15 +16,10 @@
 <p>
   <%= link_to "Edit", edit_project_path(@project) %> |
   <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
-<<<<<<< HEAD
   <%= link_to "Back to Project Page", projects_path %> |
-  <%= link_to "New Story", new_project_story_path(@project) %>
-=======
-  <%= link_to "View All", projects_path %> | 
-  <%= link_to "Releases", project_releases_path(@project) %> |
-  <%= link_to "Stories", project_stories_path(@project) %> |
+  <%= link_to "New Story", new_project_story_path(@project) %> |
   <%= link_to "Members", project_userprojects_path(@project) %>
->>>>>>> 581545d6d770283071329a690336e81907f3e744
+
 </p>
 
 <h2> Releases </h2>
