@@ -1,16 +1,11 @@
 <%= form_for [@project,@release] do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :project_id %><br />
-    <%= f.text_field :project_id %>
-  </p>
-  <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :date_released %><br />
-    <%= f.datetime_select :date_released %>
+    Release Now?<%= check_box_tag 'release_query', 'yes', false %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

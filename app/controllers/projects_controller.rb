@@ -16,11 +16,12 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects
   end
 
   def show
     @project = Project.find(params[:id])
+    @releases = @project.releases
   end
 
   def destroy

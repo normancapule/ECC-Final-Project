@@ -4,5 +4,5 @@
 
 <p>
   <%= link_to "Show", project_release_path(@project, @release) %> |
-  <%= link_to "View All", project_releases_path %>
+  <%= link_to "Back to Project [#{@project.project_name}] Page", project_path(@project) %>
 </p>

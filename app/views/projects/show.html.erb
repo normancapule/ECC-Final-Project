@@ -16,7 +16,28 @@
 <p>
   <%= link_to "Edit", edit_project_path(@project) %> |
   <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", projects_path %> | 
-  <%= link_to "Releases", project_releases_path(@project) %> |
-  <%= link_to "Stories", project_stories_path(@project) %>
+  <%= link_to "Back to Project Page", projects_path %> |
+  <%= link_to "New Story", new_project_story_path(@project) %>
 </p>
+
+<h2> Releases </h2>
+
+<table border=1>
+  <tr>
+    <th>Project</th>
+    <th>Name</th>
+    <th>Date Released</th>
+  </tr>
+  <% for release in @releases %>
+    <tr>
+      <td><%= release.project_id %></td>
+      <td><%= release.name %></td>
+      <td><%= release.date_released %></td>
+      <td><%= link_to "Show", project_release_path(@project, release) %></td>
+      <td><%= link_to "Edit", edit_project_release_path(@project, release) %></td>
+      <td><%= link_to "Destroy", project_release_path(@project, release), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Release", new_project_release_path(@project) %>

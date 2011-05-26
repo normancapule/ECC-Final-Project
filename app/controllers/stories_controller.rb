@@ -3,21 +3,24 @@ class StoriesController < ApplicationController
     @project = Project.find(params[:project_id])
     @story = Story.new
     @releases = @project.releases
+    @priority_values = ["High", "Medium", "Low"]
   end
 
   def create
     @project = Project.find(params[:project_id])
     @story = Story.new(params[:story])
+    @story.user_id = current_user.id
+    @story.priority = params[:priority]
+    release = @project.releases.where(:name=>"#{params[:release]}").first
+    release.stories << @story
     if @story.save
-      redirect_to @story, :notice => "Successfully created story."
+      redirect_to project_story_path(@project, @story), :notice => "Successfully created story."
     else
       render :action => 'new'
     end
   end
 
   def index
-    @project = Project.find(params[:project_id])
-    @stories = Story.all
   end
 
   def show
@@ -28,16 +31,20 @@ class StoriesController < ApplicationController
   def destroy
     @project = Project.find(params[:project_id])
     @story = Story.find(params[:id])
+    release = @story.release
     @story.destroy
-    redirect_to stories_url, :notice => "Successfully destroyed story."
+    redirect_to project_release_path(@project, release), :notice => "Successfully destroyed story."
   end
 
   def update
     @project = Project.find(params[:project_id])
     @story = Story.find(params[:id])
+    @story.priority = params[:priority]
     if @story.update_attributes(params[:story])
-      redirect_to @story, :notice  => "Successfully updated story."
+      redirect_to project_story_path(@project, @story), :notice  => "Successfully updated story."
     else
+      @releases = @project.releases
+      @priority_values = ["High", "Medium", "Low"]
       render :action => 'edit'
     end
   end
@@ -46,5 +53,6 @@ class StoriesController < ApplicationController
     @project = Project.find(params[:project_id])
     @story = Story.find(params[:id])
     @releases = @project.releases
+    @priority_values = ["High", "Medium", "Low"]
   end
 end
