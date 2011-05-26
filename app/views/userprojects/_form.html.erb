@@ -1,20 +1,15 @@
-<%= form_for @userproject do |f| %>
+<%= form_for [@project,@userproject] do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
-  <p>
-    <%= f.label :project_id %><br />
-    <%= f.text_field :project_id %>
-  </p>
-  <p>
-    <%= f.label :role %><br />
-    <%= f.text_field :role %>
-  </p>
-  <p>
-    <%= f.label :role_description %><br />
-    <%= f.text_field :role_description %>
-  </p>
-  <p><%= f.submit %></p>
+
+
+  <% for user in @user %>
+    
+      <%= check_box_tag "user_ids[]", user.id %>
+      <%= user.name %>
+      </br>
+  <% end %>
+  </br>
+  <%= f.label :role %>
+  <%= f.select :role, ["Owner", "Manager", "Member", "Developer"] %>
+  <p><%= f.submit "Add Members" %></p>
 <% end %>
