@@ -41,4 +41,6 @@ class RatingsController < ApplicationController
   def edit
     @rating = Rating.find(params[:id])
   end
+  
+ 
 end

@@ -1,6 +1,6 @@
 <% title "Story" %>
 
-
+<% if @rated %>
 <%= form_tag project_story_ratings_path(@project, @story) ,:method=>"Post", :remote=>true, :class => 'rate_form' do%>
   <div class="form_row">
       <label for="theme">Rating:</label>
@@ -11,7 +11,7 @@
        <p><%= submit_tag "Rate"%></p>
   </div>
 <% end %>
-
+<% end %>
 
 <p>
   <strong>Release:</strong>
@@ -36,6 +36,10 @@
 <p>
   <strong>Status:</strong>
   <%= @story.status %>
+</p>
+<p>
+  <strong>Average rating:</strong>
+  <%= @average  %>
 </p>
 
 <p>
