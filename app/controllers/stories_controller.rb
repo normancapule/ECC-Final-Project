@@ -78,4 +78,7 @@ before_filter :authenticate_user!
     @releases = @project.releases
     @priority_values = ["High", "Medium", "Low"]
   end
+  
+  
+ 
 end
