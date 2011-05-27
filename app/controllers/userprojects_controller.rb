@@ -13,9 +13,6 @@ class UserprojectsController < ApplicationController
       @userproject = Userproject.new(:user_id => user_id, :project_id=> params[:project_id], :role=> params[:userproject][:role] )
       @userproject.save
     end
-    
-    
-    
     if @userproject.save
       redirect_to project_userprojects_path(@project), :notice => "Successfully added member."
     else
