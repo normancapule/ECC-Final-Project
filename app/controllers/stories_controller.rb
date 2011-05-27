@@ -84,7 +84,7 @@ before_filter :authenticate_user!
         story.release_id = nil
       end
     end
-end
+
 
      def average(story_id)
    
