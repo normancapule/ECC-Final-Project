@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110525081220) do
+ActiveRecord::Schema.define(:version => 20110527153433) do
 
   create_table "comments", :force => true do |t|
     t.integer  "story_id"
@@ -55,12 +55,18 @@ ActiveRecord::Schema.define(:version => 20110525081220) do
   create_table "stories", :force => true do |t|
     t.integer  "release_id"
     t.integer  "user_id"
-    t.integer  "project_id"
     t.string   "priority"
     t.string   "story_name"
     t.string   "story_description"
     t.string   "status"
-    t.string   "tag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id"
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -69,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20110525081220) do
     t.integer  "user_id"
     t.integer  "project_id"
     t.string   "role"
+    t.string   "role_description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
