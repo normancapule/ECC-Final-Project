@@ -12,12 +12,7 @@ before_filter :authenticate_user!
     @story = @project.stories.new(params[:story])
     @story.user_id = current_user.id
     @story.priority = params[:priority]
-    if(params[:release]!= "")
-      release = @project.releases.where(:name=>"#{params[:release]}").first
-      release.stories << @story
-    else
-      @story.release_id = nil
-    end
+    release_checker(@story, @project)
     if @story.save
       redirect_to project_story_path(@project, @story), :notice => "Successfully created story."
     else
@@ -57,12 +52,7 @@ before_filter :authenticate_user!
     @project = Project.find(params[:project_id])
     @story = @project.stories.find(params[:id])
     @story.priority = params[:priority]
-    if(params[:release]!= "")
-      release = @project.releases.where(:name=>"#{params[:release]}").first
-      release.stories << @story
-    else
-      @story.release_id = nil
-    end
+    release_checker(@story, @project)
     if @story.update_attributes(params[:story])
       redirect_to project_story_path(@project, @story), :notice  => "Successfully updated story."
     else
@@ -78,4 +68,14 @@ before_filter :authenticate_user!
     @releases = @project.releases
     @priority_values = ["High", "Medium", "Low"]
   end
+  
+  private
+    def release_checker(story, project)
+      if(params[:release]!= "")
+        release = project.releases.where(:name=>"#{params[:release]}").first
+        release.stories << story
+      else
+        story.release_id = nil
+      end
+    end
 end

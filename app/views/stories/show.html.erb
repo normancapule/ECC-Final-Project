@@ -26,7 +26,7 @@
 </p>
 
 <p>
-  <%= link_to "Edit", edit_project_story_path(@story) %> |
+  <%= link_to "Edit", edit_project_story_path(@project, @story) %> |
   <%= link_to "Destroy", project_story_path(@project,@story), :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "Back to Release [#{@story.release.name}] Page", project_release_path(@project, @story.release )rescue
       link_to "Back to Project [#{@project.project_name}] Page", project_path(@project)%>
