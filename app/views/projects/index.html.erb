@@ -1,21 +1,14 @@
 <% title "Projects" %>
-
+  <%= render 'form' if current_user.role == "Admin" %>
 <table>
   <tr>
     <th>Creator</th>
     <th>Project Name</th>
     <th>Project Description</th>
   </tr>
-  <% for project in @projects %>
-    <tr>
-      <td><%= User.find(project.user_id).name %></td>
-      <td><%= project.project_name %></td>
-      <td><%= project.project_description %></td>
-      <td><%= link_to "Show", project %></td>
-      <td><%= link_to "Edit", edit_project_path(project) %></td>
-      <td><%= link_to "Destroy", project, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
+ <div id="projects">
+  <%= render 'projects' %>
+</div>
 </table>
 
 <p><%= link_to "New Project", new_project_path %></p>

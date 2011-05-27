@@ -3,8 +3,13 @@
 
 	$(document).ready(function() {
     $('.rate_form').bind('ajax:success', function() {
-     $('.rate_form').fadeOut();
-	 $('.rate_form').html("<p>Thank you for rating!</p>");
- 	$('.rate_form').fadeIn();
-    });
+    $('.rate_form').fadeOut();
+    $('.rate_form').html("<p>Thank you for rating!</p>");
+    $('.rate_form').fadeIn();
+        });
+        
+      $('.delete_post').bind('ajax:success', function() {
+      $(this).closest('tr').fadeOut();
+        });    
+    
   });

@@ -18,6 +18,7 @@ before_filter :authenticate_user!
 
   def index
     @projects = current_user.projects
+    @project = Project.new
   end
 
   def show
@@ -29,7 +30,10 @@ before_filter :authenticate_user!
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    redirect_to projects_url, :notice => "Successfully destroyed project."
+    respond_to do |format|
+      format.html { redirect_to(projects_url) }
+      format.js   { render :nothing => true }
+    end
   end
 
   def update
