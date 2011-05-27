@@ -4,11 +4,14 @@ class RatingsController < ApplicationController
   end
 
   def create
-    @rating = Rating.new(params[:rating])
+    @rating = Rating.new(:story_id => params[:story_id], :user_id=> current_user.id, :value => params[:rate])
+    
     if @rating.save
-      redirect_to @rating, :notice => "Successfully created rating."
-    else
-      render :action => 'new'
+    
+      respond_to do |format|
+        format.html { redirect_to(project_story_path(@project,@story)) }
+        format.js   { render :nothing => true }
+      end
     end
   end
 
@@ -38,4 +41,6 @@ class RatingsController < ApplicationController
   def edit
     @rating = Rating.find(params[:id])
   end
+  
+ 
 end

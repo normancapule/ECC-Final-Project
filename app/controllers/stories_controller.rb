@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
 before_filter :authenticate_user!
+
   def new
     @project = Project.find(params[:project_id])
     @story = Story.new
@@ -30,6 +31,8 @@ before_filter :authenticate_user!
     @story = Story.find(params[:id])
     @comment = Comment.new
     @comment_list = @story.comments
+    @average = average(@story.id)
+    @rated = has_not_rated?
   end
 
   def destroy
@@ -69,6 +72,9 @@ before_filter :authenticate_user!
     @priority_values = ["High", "Medium", "Low"]
   end
   
+
+
+
   private
     def release_checker(story, project)
       if(params[:release]!= "")
@@ -78,4 +84,26 @@ before_filter :authenticate_user!
         story.release_id = nil
       end
     end
+
+
+     def average(story_id)
+   
+     begin
+      sum = (Rating.where(:story_id => story_id).sum(:value)).to_f
+        count = (Rating.where(:story_id => story_id).count ).to_f
+        average = (sum/count).round(1)
+      rescue
+      average = 0.0
+    end
+  end
+  
+  def has_not_rated?
+      if Rating.where(:story_id=>@story.id, :user_id=>current_user.id).count == 1
+          rated = false
+      else
+          rated = true
+      end
+  end
+ 
 end
+

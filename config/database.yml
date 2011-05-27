@@ -3,7 +3,7 @@ development:
   database: ecc_development
   username: normz
   password: 10831215
-
+  host: localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -13,11 +13,11 @@ test: &test
   database: ecc_test
   username: normz
   password: 10831215
-
+  host: localhost
 
 production:
   adapter: postgresql
   database: ecc_production
   username: normz
   password: 10831215
-
+  host: localhost
