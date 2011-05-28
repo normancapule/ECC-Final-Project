@@ -13,10 +13,13 @@ before_filter :authenticate_user!
     @story = @project.stories.new(params[:story])
     @story.user_id = current_user.id
     @story.priority = params[:priority]
-    release_checker(@story, @prparamoject)
+    release_checker(@story, @project)
     if @story.save
+      content = %Q{#{current_user.name} has created the Story #{@story.story_name}}
+      log_action(@project, current_user, content)
       tag_control(params[:tags], @story, @project)
-      redirect_to project_story_path(@project, @story), :notice => "Successfully created story."
+      redirect_to project_story_path(@project, @story), 
+        :notice => "Successfully created story."
     else
       @releases = @project.releases
       @priority_values = ["High", "Medium", "Low"]
@@ -45,11 +48,15 @@ before_filter :authenticate_user!
     else
       flag = true
     end
+    content = %Q{#{current_user.name} has destroyed the Story #{@story.story_name}}
+    log_action(@project, current_user, content)
     @story.destroy
     if flag == false
-      redirect_to project_release_path(@project, release), :notice => "Successfully destroyed story."
+      redirect_to project_release_path(@project, release), 
+        :notice => "Successfully destroyed story."
     else
-      redirect_to project_path(@project), :notice => "Successfully destroyed story."
+      redirect_to project_path(@project), 
+        :notice => "Successfully destroyed story."
     end
   end
 
@@ -59,7 +66,10 @@ before_filter :authenticate_user!
     @story.priority = params[:priority]
     release_checker(@story, @project)
     if @story.update_attributes(params[:story])
-      redirect_to project_story_path(@project, @story), :notice  => "Successfully updated story"
+      content = %Q{#{current_user.name} has updated the Story #{@story.story_name}}
+      log_action(@project, current_user, content)
+      redirect_to project_story_path(@project, @story), 
+        :notice  => "Successfully updated story"
     else
       @releases = @project.releases
       @priority_values = ["High", "Medium", "Low"]
