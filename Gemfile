@@ -15,3 +15,4 @@ gem "tabs_on_rails"
 
 gem "jquery-rails"
 
+gem "will_paginate", "~> 3.0.pre2"

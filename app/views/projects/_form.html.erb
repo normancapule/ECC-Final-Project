@@ -1,4 +1,5 @@
-<%= form_for @project do |f| %>
+  <p><a id = "new_proj">New Project</a></p>
+<%= form_for @project, :remote=>false do |f| %>
   <%= f.error_messages %>
 
   <p>

@@ -55,13 +55,14 @@ ActiveRecord::Schema.define(:version => 20110527153433) do
   create_table "stories", :force => true do |t|
     t.integer  "release_id"
     t.integer  "user_id"
+    t.integer  "project_id"
     t.string   "priority"
     t.string   "story_name"
     t.string   "story_description"
     t.string   "status"
+    t.string   "tag"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "project_id"
   end
 
   create_table "tags", :force => true do |t|
@@ -75,7 +76,6 @@ ActiveRecord::Schema.define(:version => 20110527153433) do
     t.integer  "user_id"
     t.integer  "project_id"
     t.string   "role"
-    t.string   "role_description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

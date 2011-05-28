@@ -1,14 +1,17 @@
 <% title "Projects" %>
+
   <%= render 'form' if current_user.role == "Admin" %>
-<table>
+<table id="projects_table">
   <tr>
     <th>Creator</th>
     <th>Project Name</th>
     <th>Project Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
  <div id="projects">
-  <%= render 'projects' %>
+  <%= render :partial=>'projects' %>
 </div>
 </table>
-
-<p><%= link_to "New Project", new_project_path %></p>
+<%= will_paginate(@projects) %>

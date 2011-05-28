@@ -1,7 +1,18 @@
 #nav {
 text-align: right;
+}
+#new_project{
+display: none;
+}
 
 
+
+tr.even { 
+background-color: #99CCCC; 
+}
+tr.odd { 
+background-color: #99CCFF; 
+margin: 10px;
 }
 .clear {
   clear: both;
@@ -9,7 +20,23 @@ text-align: right;
   overflow: hidden;
 }
 
-
+table,td,th
+{
+padding:10px;
+border: 1px;
+border-spacing:0px 0px;
+color:#3366FF;
+}
+table
+{
+width:100%;
+}
+th
+{
+background-color: #F0F0F0; 
+height:15px;
+}
+</style>
 #flash_notice, #flash_error, #flash_alert {
   padding: 5px 8px;
   margin: 10px 0;

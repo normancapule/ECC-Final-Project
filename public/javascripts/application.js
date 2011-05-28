@@ -11,7 +11,16 @@
       $('.delete_post').bind('ajax:success', function() {
       $(this).closest('tr').fadeOut();
         });    
+        
 
+    $('#new_proj').click(function() {
+      if ($("#new_project").is(":hidden")) {
+        $("#new_project").slideDown("slow");
+      } else {
+        $("#new_project").slideUp();
+      }});
+  
+   
   });
 
 
