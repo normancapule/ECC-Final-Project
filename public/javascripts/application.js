@@ -15,9 +15,17 @@
 
     $('#new_proj').click(function() {
       if ($("#new_project").is(":hidden")) {
-        $("#new_project").slideDown("slow");
+        $("#new_project").slideDown("fast");
       } else {
         $("#new_project").slideUp();
+      }});
+      
+      
+      $('#new_rel').click(function() {
+      if ($("#new_release").is(":hidden")) {
+        $("#new_release").slideDown("fast");
+      } else {
+        $("#new_release").slideUp();
       }});
   
    

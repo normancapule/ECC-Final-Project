@@ -21,11 +21,13 @@
   <%= link_to "Members", project_userprojects_path(@project) %>
 
 </p>
-
+<%= render 'form_release' %>
 <h2> Releases </h2>
-  <%= render 'release' %>
-<%= link_to "New Release", new_project_release_path(@project) %>
-
+<div>
+<%= render 'release' %>
+<%= will_paginate(@releases) %>
+</div>
+<div>
 <h2> Backlog List </h2>
-  <%= render 'backlog' %>
-
+<%= render 'backlog' %>
+</div>

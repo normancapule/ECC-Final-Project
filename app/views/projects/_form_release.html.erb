@@ -1,0 +1,12 @@
+<p><a id = "new_rel">New Release</a></p>
+<%= form_for [@project,@release], :remote=>true do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    Release Now?<%= check_box_tag 'release_query', 'yes', false %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

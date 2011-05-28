@@ -10,20 +10,18 @@ before_filter :authenticate_user!
     
     if @project.save
       @userproject = Userproject.create(:user_id=> current_user.id, :project_id => @project.id, :role => "Creator" )
-      redirect_to @project, :notice => "Successfully created project."
+      #redirect_to @project, :notice => "Successfully created project."
       
-      
-      
-      #  respond_to do |format| #for ajax
-       #   format.html { #tells the request that it is an html
-        #    redirect_to @project}
-         #   format.js do
-          #    render :update do |page|
-          #      page << "$('#new_project')[0].reset();"
-          #      page << "$('#projects_table').append('#{ escape_javascript(render :partial=>'projects') }');"
-          #    end
-          #  end
-        #  end
+        respond_to do |format| #for ajax
+         format.html { #tells the request that it is an html
+            redirect_to @project}
+            format.js  do
+              render :update do |page|
+                page << "$('#new_project')[0].reset();"
+                page << "$('#projects_table').prepend('#{ escape_javascript(render :partial => 'project', :object => @project ) }');"
+              end
+            end
+        end
      
       
       
@@ -40,8 +38,9 @@ before_filter :authenticate_user!
 
   def show
     @project = Project.find(params[:id])
-    @releases = @project.releases
+    @releases = @project.releases.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
     @backlog_list = @project.stories.where(:release_id => nil)
+    @release = Release.new
   end
 
   def destroy

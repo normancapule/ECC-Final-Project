@@ -1,8 +1,6 @@
-<% title "Projects" %>
-
-  <%= render 'form' if current_user.role == "Admin" %>
-<table id="projects_table">
-  <tr>
+<%= render 'form' if current_user.role == "Admin" %>
+  <table>
+   <tr>
     <th>Creator</th>
     <th>Project Name</th>
     <th>Project Description</th>
@@ -10,6 +8,8 @@
     <th></th>
     <th></th>
   </tr>
+  </table>
+<table id="projects_table">
  <div id="projects">
   <%= render :partial=>'projects' %>
 </div>

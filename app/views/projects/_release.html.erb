@@ -1,18 +1,24 @@
-<table border=1>
+<table>
   <tr>
     <th>Project</th>
     <th>Name</th>
     <th>Date Released</th>
   </tr>
+  
+  <table id="release_table">
+  
+ 
   <% for release in @releases %>
-    <tr>
+    <tr class="<%= cycle("even", "odd") %>">
       <td><%= release.project_id %></td>
       <td><%= release.name %></td>
       <td><%= release.date_released %></td>
       <td><%= link_to "Show", project_release_path(@project, release) %></td>
       <td><%= link_to "Edit", edit_project_release_path(@project, release) %></td>
-      <td><%= link_to "Destroy", project_release_path(@project, release), :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Destroy", project_release_path(@project, release), :confirm => 'Are you sure?', 
+            :method => :delete,  :remote => true, :class=>'delete_post' %></td>
     </tr>
   <% end %>
+   </table>
 </table>
 

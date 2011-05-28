@@ -1,0 +1,2 @@
+$('#new_project')[0].reset();
+$('#projects_table').prepend('<%= escape_javascript(render :partial => 'project', :object => @project ) %>');
