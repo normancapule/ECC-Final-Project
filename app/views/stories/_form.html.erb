@@ -12,11 +12,15 @@
   </p>
   <p>
     <%= f.label :story_description %><br />
-    <%= f.text_field :story_description %>
+    <%= f.text_area :story_description %>
   </p>
   <p>
     <%= f.label :status %><br />
     <%= f.text_field :status %>
+  </p>
+  <p>
+    <%= label_tag :tags %><br />
+    <%= text_area_tag :tags, @tags %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110527153433) do
+ActiveRecord::Schema.define(:version => 20110528052004) do
 
   create_table "comments", :force => true do |t|
     t.integer  "story_id"
@@ -65,7 +65,8 @@ ActiveRecord::Schema.define(:version => 20110527153433) do
   end
 
   create_table "tags", :force => true do |t|
-    t.string   "name"
+    t.integer  "story_id"
+    t.string   "content"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"

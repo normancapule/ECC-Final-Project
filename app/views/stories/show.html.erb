@@ -41,7 +41,10 @@
   <strong>Average rating:</strong>
   <%= @average  %>
 </p>
-
+<p>
+  <strong>Tags</strong>
+  <%= @tags %>
+</p>
 <p>
   <%= link_to "Edit", edit_project_story_path(@project, @story) %> |
   <%= link_to "Destroy", project_story_path(@project,@story), :confirm => 'Are you sure?', :method => :delete %> |
