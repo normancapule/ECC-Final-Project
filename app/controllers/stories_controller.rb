@@ -3,7 +3,7 @@ before_filter :authenticate_user!
 
   def new
     @project = Project.find(params[:project_id])
-    @story = @project.stories.new
+    @story = Story.new
     @releases = @project.releases
     @priority_values = ["High", "Medium", "Low"]
   end
@@ -16,8 +16,7 @@ before_filter :authenticate_user!
     release_checker(@story, @prparamoject)
     if @story.save
       tag_control(params[:tags], @story, @project)
-      redirect_to project_story_path(@project, @story), 
-        :notice => "Successfully created story."
+      redirect_to project_story_path(@project, @story), :notice => "Successfully created story."
     else
       @releases = @project.releases
       @priority_values = ["High", "Medium", "Low"]
@@ -30,8 +29,8 @@ before_filter :authenticate_user!
 
   def show
     @project = Project.find(params[:project_id])
-    @story = @project.stories.find(params[:id])
-    @comment = @story.comments.new
+    @story = Story.find(params[:id])
+    @comment = Comment.new
     @comment_list = @story.comments
     @average = average(@story.id)
     @rated = has_not_rated?
@@ -48,11 +47,9 @@ before_filter :authenticate_user!
     end
     @story.destroy
     if flag == false
-      redirect_to project_release_path(@project, release), 
-        :notice => "Successfully destroyed story."
+      redirect_to project_release_path(@project, release), :notice => "Successfully destroyed story."
     else
-      redirect_to project_path(@project), 
-        :notice => "Successfully destroyed story."
+      redirect_to project_path(@project), :notice => "Successfully destroyed story."
     end
   end
 
@@ -62,8 +59,7 @@ before_filter :authenticate_user!
     @story.priority = params[:priority]
     release_checker(@story, @project)
     if @story.update_attributes(params[:story])
-      redirect_to project_story_path(@project, @story), 
-        :notice  => "Successfully updated story"
+      redirect_to project_story_path(@project, @story), :notice  => "Successfully updated story"
     else
       @releases = @project.releases
       @priority_values = ["High", "Medium", "Low"]
@@ -73,7 +69,7 @@ before_filter :authenticate_user!
 
   def edit
     @project = Project.find(params[:project_id])
-    @story = @project.stories.find(params[:id])
+    @story = Story.find(params[:id])
     @releases = @project.releases
     @priority_values = ["High", "Medium", "Low"]
     @tags = display_story_tags(@story)
@@ -93,12 +89,9 @@ before_filter :authenticate_user!
     def tag_control(param, story, project)
       tags = param.gsub(/[\s]/, "").downcase.split(",")
       errors = ""
-      Tag.where(:story_id=>story.id, 
-                :project_id=>project.id).delete_all
+      Tag.where(:story_id=>story.id, :project_id=>project.id).delete_all
       tags.each do |tag|
-        Tag.create(:story_id=>story.id, 
-                   :content=>tag, 
-                   :project_id=>project.id)
+        Tag.create(:story_id=>story.id, :content=>tag, :project_id=>project.id)
       end
     end
     
@@ -121,8 +114,7 @@ before_filter :authenticate_user!
     end
   
     def has_not_rated?
-      if Rating.where(:story_id=>@story.id, 
-                      :user_id=>current_user.id).count == 1
+      if Rating.where(:story_id=>@story.id, :user_id=>current_user.id).count == 1
           rated = false
       else
           rated = true

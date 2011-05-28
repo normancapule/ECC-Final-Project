@@ -1,2 +1,0 @@
-page.replace_html 'projects', :partial=>'/projects' 
-page[:submit_form].reset

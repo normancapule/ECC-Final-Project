@@ -7,11 +7,9 @@ class CommentsController < ApplicationController
     @story = Story.find(params[:story_id])
     @comment = @story.comments.new(params[:comment])
     if @comment.save
-      redirect_to project_story_path(@project,@story), 
-        :notice => "Successfully created comment."
+      redirect_to project_story_path(@project,@story), :notice => "Successfully created comment."
     else
-      redirect_to project_story_path(@project,@story), 
-        :notice => "Comment can't be blank"
+      redirect_to project_story_path(@project,@story), :notice => "Comment can't be blank"
     end
   end
 
@@ -26,8 +24,7 @@ class CommentsController < ApplicationController
     @story = Story.find(params[:story_id])
     @comment = @story.comments.find(params[:id])
     @comment.destroy
-    redirect_to project_story_path(@project,@story), 
-      :notice => "Successfully destroyed comment."
+    redirect_to project_story_path(@project,@story), :notice => "Successfully destroyed comment."
   end
 
   def update

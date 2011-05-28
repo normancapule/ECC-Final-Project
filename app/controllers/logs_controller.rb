@@ -7,8 +7,7 @@ before_filter :authenticate_user!
   def create
     @log = Log.new(params[:log])
     if @log.save
-      redirect_to @log, 
-        :notice => "Successfully created log."
+      redirect_to @log, :notice => "Successfully created log."
     else
       render :action => 'new'
     end
@@ -25,15 +24,13 @@ before_filter :authenticate_user!
   def destroy
     @log = Log.find(params[:id])
     @log.destroy
-    redirect_to logs_url, 
-      :notice => "Successfully destroyed log."
+    redirect_to logs_url, :notice => "Successfully destroyed log."
   end
 
   def update
     @log = Log.find(params[:id])
     if @log.update_attributes(params[:log])
-      redirect_to @log, 
-        :notice  => "Successfully updated log."
+      redirect_to @log, :notice  => "Successfully updated log."
     else
       render :action => 'edit'
     end
