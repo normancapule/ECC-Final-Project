@@ -3,6 +3,12 @@
 
 	$(document).ready(function() {
     $('.rate_form').bind('ajax:success', function() {
+<<<<<<< HEAD
+     $('.rate_form').fadeOut();
+	 $('.rate_form').html("<p>Thank you for rating!</p>");
+ 	$('.rate_form').fadeIn();
+    });
+=======
     $('.rate_form').fadeOut();
     $('.rate_form').html("<p>Thank you for rating!</p>");
     $('.rate_form').fadeIn();
@@ -12,6 +18,7 @@
       $(this).closest('tr').fadeOut();
         });    
     
+>>>>>>> deb6185dbeb6260ca113f3bb407b3f9e8feb76bc
   });
 
 
