@@ -1,8 +1,9 @@
-<h2>Sign in</h2>
+  <div id="topnav" class="topnav"> Have an account? <a href="login" class="signin"><span>Sign in</span></a> </div>
 
+  <fieldset id="signin_menu">
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <p><%= f.label :email %><br />
-  <%= f.email_field :email %></p>
+  <%= f.text_field :email %></p>
 
   <p><%= f.label :password %><br />
   <%= f.password_field :password %></p>
@@ -11,7 +12,40 @@
     <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
   <% end -%>
 
-  <p><%= f.submit "Sign in" %></p>
+  <p><%= f.submit "Sign in", :id=>"signin_submit" %></p>
 <% end %>
-
+    </form>
+    
 <%= render :partial => "devise/shared/links" %>
+  </fieldset>
+
+
+
+
+
+<script type="text/javascript">
+        $(document).ready(function() {
+
+            $(".signin").click(function(e) {          
+				e.preventDefault();
+                $("fieldset#signin_menu").toggle();
+				$(".signin").toggleClass("menu-open");
+            });
+			
+			$("fieldset#signin_menu").mouseup(function() {
+				return false
+			});
+			$(document).mouseup(function(e) {
+				if($(e.target).parent("a.signin").length==0) {
+					$(".signin").removeClass("menu-open");
+					$("fieldset#signin_menu").hide();
+				}
+			});			
+			
+        });
+</script>
+<script type='text/javascript'>
+    $(function() {
+	  $('#forgot_username_link').tipsy({gravity: 'w'});   
+    });
+  </script>
