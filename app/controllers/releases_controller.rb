@@ -2,14 +2,15 @@ class ReleasesController < ApplicationController
 before_filter :authenticate_user!
   def new
     @project = Project.find(params[:project_id])
-    @release = Release.new
+    @release = @project.releases.new
   end
 
   def create
     @project = Project.find(params[:project_id])
     @release = @project.releases.build(params[:release])
     if @release.save
-     # redirect_to project_release_path(@project, @release), :notice => "Successfully created release."
+      content = %Q{#{current_user.name} has created the Release #{@release.name}}
+      log_action(@project, current_user, content)
       
         
         respond_to do |format| #for ajax
@@ -29,6 +30,7 @@ before_filter :authenticate_user!
             end
         end
      
+
     else
       render :action => 'new'
     end
@@ -39,28 +41,34 @@ before_filter :authenticate_user!
 
   def show
     @project = Project.find(params[:project_id])
-    @release = Release.find(params[:id])
+    @release = @project.releases.find(params[:id])
     @stories = @release.stories
   end
 
   def destroy
     @project = Project.find(params[:project_id])
     @release = @project.releases.find params[:id]
+      content = %Q{#{current_user.name} has destroyed the Release #{@release.name}}
+      log_action(@project, current_user, content)
     @release.destroy
+
    
      respond_to do |format|
       format.html { redirect_to(project_path(@project)) }
       format.js   { render :nothing => true }
     end
+
   end
 
   def update
     @project = Project.find(params[:project_id])
     @release = @project.releases.find params[:id]
-    
     @release.release_now if params[:release_query] == "yes"
     if @release.update_attributes(params[:release])
-      redirect_to project_release_path(@project, @release), :notice  => "Successfully updated release."
+      content = %Q{#{current_user.name} has updated the Release #{@release.name}}
+      log_action(@project, current_user, content)
+      redirect_to project_release_path(@project, @release), 
+        :notice  => "Successfully updated release."
     else
       render :action => 'edit'
     end
@@ -68,6 +76,6 @@ before_filter :authenticate_user!
 
   def edit
     @project = Project.find(params[:project_id])
-    @release = Release.find(params[:id])
+    @release = @project.releases.find(params[:id])
   end
 end

@@ -9,8 +9,10 @@ before_filter :authenticate_user!
     @project.user_id = current_user.id
     
     if @project.save
+
       @userproject = Userproject.create(:user_id=> current_user.id, :project_id => @project.id, :role => "Creator" )
-      #redirect_to @project, :notice => "Successfully created project."
+      content = %Q{#{current_user.name} has created the Project #{@project.project_name}}
+      log_action(@project, current_user, content)
       
         respond_to do |format| #for ajax
          format.html { #tells the request that it is an html
@@ -23,9 +25,6 @@ before_filter :authenticate_user!
             end
         end
      
-      
-      
-      
     else
       render :action => 'new'
     end
@@ -41,11 +40,14 @@ before_filter :authenticate_user!
     @releases = @project.releases.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
     @backlog_list = @project.stories.where(:release_id => nil)
     @release = Release.new
+    @logs = @project.logs
   end
 
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
+    content = %Q{#{current_user.name} has destroyed the Project #{@project.project_name}}
+    log_action(@project, current_user, content)
     respond_to do |format|
       format.html { redirect_to(projects_url) }
       format.js   { render :nothing => true }
@@ -55,7 +57,10 @@ before_filter :authenticate_user!
   def update
     @project = Project.find(params[:id])
     if @project.update_attributes(params[:project])
-      redirect_to @project, :notice  => "Successfully updated project."
+    content = %Q{#{current_user.name} has updated the Project #{@project.project_name}}
+    log_action(@project, current_user, content)
+      redirect_to @project, 
+        :notice  => "Successfully updated project."
     else
       render :action => 'edit'
     end

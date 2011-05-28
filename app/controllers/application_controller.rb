@@ -1,3 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+
+  def log_action(project, user, content)
+    Log.create(:user_id => user.id, :project_id => project.id, :content=>content)
+  end
 end

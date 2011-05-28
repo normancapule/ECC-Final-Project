@@ -6,7 +6,8 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(params[:tag])
     if @tag.save
-      redirect_to @tag, :notice => "Successfully created tag."
+      redirect_to @tag, 
+        :notice => "Successfully created tag."
     else
       render :action => 'new'
     end
@@ -23,13 +24,15 @@ class TagsController < ApplicationController
   def destroy
     @tag = Tag.find(params[:id])
     @tag.destroy
-    redirect_to tags_url, :notice => "Successfully destroyed tag."
+    redirect_to tags_url, 
+      :notice => "Successfully destroyed tag."
   end
 
   def update
     @tag = Tag.find(params[:id])
     if @tag.update_attributes(params[:tag])
-      redirect_to @tag, :notice  => "Successfully updated tag."
+      redirect_to @tag, 
+        :notice  => "Successfully updated tag."
     else
       render :action => 'edit'
     end
