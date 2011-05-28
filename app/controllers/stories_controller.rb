@@ -59,8 +59,7 @@ before_filter :authenticate_user!
     @story.priority = params[:priority]
     release_checker(@story, @project)
     if @story.update_attributes(params[:story])
-      tag_control(params[:tags], @story, @project)
-      redirect_to project_story_path(@project, @story), :notice  => "Successfully updated story."
+      redirect_to project_story_path(@project, @story), :notice  => "Successfully updated story"
     else
       @releases = @project.releases
       @priority_values = ["High", "Medium", "Low"]
@@ -89,6 +88,7 @@ before_filter :authenticate_user!
     
     def tag_control(param, story, project)
       tags = param.gsub(/[\s]/, "").downcase.split(",")
+      errors = ""
       Tag.where(:story_id=>story.id, :project_id=>project.id).delete_all
       tags.each do |tag|
         Tag.create(:story_id=>story.id, :content=>tag, :project_id=>project.id)
