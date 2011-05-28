@@ -4,7 +4,10 @@
     Release: <%= select_tag "release", options_for_select(@releases.map {|u| u.name}), :include_blank => true %>
   </p>
   <p>
-    Priority: <%= select_tag "priority", options_for_select(@priority_values) %>
+    Priority: <%= f.select "priority", options_for_select(@priority_values) %>
+  </p>
+  <p>
+    Status: <%= f.select "status", options_for_select(@status_values) %>
   </p>
   <p>
     <%= f.label :story_name %><br />
@@ -13,10 +16,6 @@
   <p>
     <%= f.label :story_description %><br />
     <%= f.text_area :story_description %>
-  </p>
-  <p>
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
   </p>
   <p>
     <%= label_tag :tags %><br />

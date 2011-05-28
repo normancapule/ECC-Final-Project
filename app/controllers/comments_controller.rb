@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    @story = Story.find(params[:story_id])
+    @story = @project.stories.find(params[:story_id])
     @comment = @story.comments.new(params[:comment])
     if @comment.save
       content = %Q{#{current_user.name} has commented on the Story #{@story.story_name}}
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:project_id])
-    @story = Story.find(params[:story_id])
+    @story = @project.stories.find(params[:story_id])
     @comment = @story.comments.find(params[:id])
     content = %Q{#{current_user.name} has destroyed the comment 
                 #{@comment.comment} on the Story #{@story.story_name}}

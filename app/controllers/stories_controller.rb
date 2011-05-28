@@ -3,16 +3,16 @@ before_filter :authenticate_user!
 
   def new
     @project = Project.find(params[:project_id])
-    @story = Story.new
+    @story = @project.stories.new
     @releases = @project.releases
     @priority_values = ["High", "Medium", "Low"]
+    @status_values = ["Start", "Finish", "Hold", "Reject", "Accept"]
   end
 
   def create
     @project = Project.find(params[:project_id])
     @story = @project.stories.new(params[:story])
     @story.user_id = current_user.id
-    @story.priority = params[:priority]
     release_checker(@story, @project)
     if @story.save
       content = %Q{#{current_user.name} has created the Story #{@story.story_name}}
@@ -23,6 +23,7 @@ before_filter :authenticate_user!
     else
       @releases = @project.releases
       @priority_values = ["High", "Medium", "Low"]
+      @status_values = ["Start", "Finish", "Hold", "Reject", "Accept"]
       render :action => 'new'
     end
   end
@@ -32,8 +33,8 @@ before_filter :authenticate_user!
 
   def show
     @project = Project.find(params[:project_id])
-    @story = Story.find(params[:id])
-    @comment = Comment.new
+    @story = @project.stories.find(params[:id])
+    @comment = @story.comments.new
     @comment_list = @story.comments
     @average = average(@story.id)
     @rated = has_not_rated?
@@ -63,7 +64,6 @@ before_filter :authenticate_user!
   def update
     @project = Project.find(params[:project_id])
     @story = @project.stories.find(params[:id])
-    @story.priority = params[:priority]
     release_checker(@story, @project)
     if @story.update_attributes(params[:story])
       content = %Q{#{current_user.name} has updated the Story #{@story.story_name}}
@@ -79,9 +79,10 @@ before_filter :authenticate_user!
 
   def edit
     @project = Project.find(params[:project_id])
-    @story = Story.find(params[:id])
+    @story = @project.stories.find(params[:id])
     @releases = @project.releases
     @priority_values = ["High", "Medium", "Low"]
+    @status_values = ["Start", "Finish", "Hold", "Reject", "Accept"]
     @tags = display_story_tags(@story)
   end
   
