@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to project_story_path(@project,@story), :notice => "Successfully created comment."
     else
-      render :action => 'new'
+      redirect_to project_story_path(@project,@story), :notice => "Comment can't be blank"
     end
   end
 
@@ -28,14 +28,6 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:project_id])
-    @story = Story.find(params[:story_id])
-    @comment = @story.comments.find(params[:id])
-    if @comment.update_attributes(params[:comment])
-      redirect_to @comment, :notice  => "Successfully updated comment."
-    else
-      render :action => 'edit'
-    end
   end
 
   def edit
