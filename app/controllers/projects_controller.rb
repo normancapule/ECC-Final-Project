@@ -7,10 +7,12 @@ before_filter :authenticate_user!
   def create
     @project = Project.new(params[:project])
     @project.user_id = current_user.id
-    
     if @project.save
-      @userproject = Userproject.create(:user_id=> current_user.id, :project_id => @project.id, :role => "Creator" )
-      redirect_to @project, :notice => "Successfully created project."
+      @userproject = Userproject.create(:user_id=> current_user.id, 
+                                        :project_id => @project.id, 
+                                        :role => "Creator" )
+      redirect_to @project, 
+        :notice => "Successfully created project."
     else
       render :action => 'new'
     end
@@ -39,7 +41,8 @@ before_filter :authenticate_user!
   def update
     @project = Project.find(params[:id])
     if @project.update_attributes(params[:project])
-      redirect_to @project, :notice  => "Successfully updated project."
+      redirect_to @project, 
+        :notice  => "Successfully updated project."
     else
       render :action => 'edit'
     end
