@@ -21,13 +21,7 @@ load_and_authorize_resource
             format.js  do
               render :update do |page|
                 page << "$('#new_release')[0].reset();"
-                page << "$('#release_table').prepend('<tr class=\"odd\"><td>#{ @release.project_id }</td>\
-                  <td>#{ @release.name }</td>\
-                  <td>#{ @release.date_released }</td>\
-                  <td>#{ link_to "Show", project_release_path(@project, @release) }</td>\
-                  <td>#{ link_to "Edit", edit_project_release_path(@project, @release) }</td>\
-                  <td>#{ link_to "Destroy", project_release_path(@project, @release), :confirm => 'Are you sure?', :method => :delete,  :remote => true, :class=>'delete_post' }</td>\
-                  </tr>');"  
+                page << "$('#release_table').prepend('#{raw escape_javascript(render @release)}');"  
               end
             end
         end

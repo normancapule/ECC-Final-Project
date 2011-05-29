@@ -1,6 +1,9 @@
 class LogsController < ApplicationController
 before_filter :authenticate_user!
-load_and_authorize_resource
+load_and_authorize_resource>>>>>>> 2837198e3a40a6370eec557247eee218be23df09
+  def index
+     @logs = Log.where("project_id = ? and created_at > ?", params[:project_id], Time.at(params[:after].to_i + 1))
+  end
 
   def new
     @log = Log.new
@@ -16,9 +19,6 @@ load_and_authorize_resource
     end
   end
 
-  def index
-    @logs = Log.all
-  end
 
   def show
     @log = Log.find(params[:id])

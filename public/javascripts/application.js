@@ -27,9 +27,27 @@
       } else {
         $("#new_release").slideUp();
       }});
+      
+      
+        if ($("#logs").length > 0) {
+       
+        setTimeout(updateLogs, 8000);
+          }
+      
   
+      function updateLogs () {
+        var project_id = $("#project").attr("data-id");
+        if ($(".log").length > 0) {
+          var after = $(".log:last-child").attr("data-time");
+        } else {
+          var after = "0";
+        }
+        $.getScript("/logs.js?project_id=" + project_id + "&after=" + after)
+        setTimeout(updateLogs, 8000);
+      }
+   
+
+  alert($('#right-sidebar').scrollTop());
    
   });
-
-
-
+      

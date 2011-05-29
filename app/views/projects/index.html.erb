@@ -10,8 +10,6 @@
   </tr>
   </table>
 <table id="projects_table">
- <div id="projects">
-  <%= render :partial=>'projects' %>
-</div>
+  <%= render @projects %>
 </table>
 <%= will_paginate(@projects) %>

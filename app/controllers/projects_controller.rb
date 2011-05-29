@@ -21,8 +21,7 @@ load_and_authorize_resource
             format.js  do
               render :update do |page|
                 page << "$('#new_project')[0].reset();"
-                page << "$('#projects_table').prepend('#{ escape_javascript(render :partial => 'project', :object => @project ) }');"
-              endproject
+                page << "$('#projects_table').prepend('#{raw escape_javascript(render @project)}');"
               end
             end
         end
