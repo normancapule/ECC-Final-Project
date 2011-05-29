@@ -21,4 +21,13 @@ class User < ActiveRecord::Base
   
   scope :admin, where(:role => 'Admin')
   scope :user, where(:role => 'User')
+  
+  def project_role?(project)
+    userp = self.userprojects.where(:project_id=>project.id, :user_id=>self.id)
+    temp = []
+    userp.each do |inside|
+      temp << inside.role.downcase
+    end
+    temp
+  end
 end
