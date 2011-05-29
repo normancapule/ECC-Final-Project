@@ -23,11 +23,16 @@ class User < ActiveRecord::Base
   scope :user, where(:role => 'User')
   
   def project_role?(project)
-    userp = self.userprojects.where(:project_id=>project.id, :user_id=>self.id)
+    userp = userprojects.where(:project_id=>project.id, :user_id=>self.id)
     temp = []
     userp.each do |inside|
       temp << inside.role.downcase
     end
     temp
   end
+  
+  def role?(input_role)
+    role.downcase == input_role.to_s.downcase
+  end
+  
 end

@@ -1,5 +1,7 @@
 class ReleasesController < ApplicationController
 before_filter :authenticate_user!
+load_and_authorize_resource
+
   def new
     @project = Project.find(params[:project_id])
     @release = @project.releases.new
@@ -29,7 +31,6 @@ before_filter :authenticate_user!
               end
             end
         end
-     
 
     else
       render :action => 'new'
@@ -51,8 +52,7 @@ before_filter :authenticate_user!
       content = %Q{#{current_user.name} has destroyed the Release #{@release.name}}
       log_action(@project, current_user, content)
     @release.destroy
-
-   
+    
      respond_to do |format|
       format.html { redirect_to(project_path(@project)) }
       format.js   { render :nothing => true }

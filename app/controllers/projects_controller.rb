@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
 before_filter :authenticate_user!
+load_and_authorize_resource
+
   def new
     @project = Project.new
   end
@@ -9,7 +11,6 @@ before_filter :authenticate_user!
     @project.user_id = current_user.id
     
     if @project.save
-
       @userproject = Userproject.create(:user_id=> current_user.id, :project_id => @project.id, :role => "Creator" )
       content = %Q{#{current_user.name} has created the Project #{@project.project_name}}
       log_action(@project, current_user, content)
