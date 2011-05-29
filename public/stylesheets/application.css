@@ -1,10 +1,9 @@
 #nav {
 text-align: right;
 }
-#new_project{
+#new_project,#new_release{
 display: none;
 }
-
 
 
 tr.even { 
@@ -83,3 +82,29 @@ height:15px;
 .error_messages ul {
   margin: 0;
 }
+
+
+#footer-wrap {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;	
+}
+
+#footer-container {
+	height: 25px;
+	background: url(/images/bg-btn-blue.png) repeat-x left bottom;
+}
+
+#footer {
+	width: 940px;
+	margin: 0 auto;
+	position: relative;
+
+}
+#footer_text {
+  color:#3366FF;
+  text-align: center;
+  padding-top: 5px;
+}
+

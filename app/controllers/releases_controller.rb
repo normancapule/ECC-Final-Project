@@ -11,8 +11,26 @@ before_filter :authenticate_user!
     if @release.save
       content = %Q{#{current_user.name} has created the Release #{@release.name}}
       log_action(@project, current_user, content)
-      redirect_to project_release_path(@project, @release), 
-        :notice => "Successfully created release."
+      
+        
+        respond_to do |format| #for ajax
+         format.html { #tells the request that it is an html
+            redirect_to project_path(@project)}
+            format.js  do
+              render :update do |page|
+                page << "$('#new_release')[0].reset();"
+                page << "$('#release_table').prepend('<tr class=\"odd\"><td>#{ @release.project_id }</td>\
+                  <td>#{ @release.name }</td>\
+                  <td>#{ @release.date_released }</td>\
+                  <td>#{ link_to "Show", project_release_path(@project, @release) }</td>\
+                  <td>#{ link_to "Edit", edit_project_release_path(@project, @release) }</td>\
+                  <td>#{ link_to "Destroy", project_release_path(@project, @release), :confirm => 'Are you sure?', :method => :delete,  :remote => true, :class=>'delete_post' }</td>\
+                  </tr>');"  
+              end
+            end
+        end
+     
+
     else
       render :action => 'new'
     end
@@ -33,8 +51,13 @@ before_filter :authenticate_user!
       content = %Q{#{current_user.name} has destroyed the Release #{@release.name}}
       log_action(@project, current_user, content)
     @release.destroy
-    redirect_to project_path(@project), 
-      :notice => "Successfully destroyed release."
+
+   
+     respond_to do |format|
+      format.html { redirect_to(project_path(@project)) }
+      format.js   { render :nothing => true }
+    end
+
   end
 
   def update
