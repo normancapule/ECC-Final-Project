@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :name, :traverse_project_id
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :name
   validates_presence_of :role, :name, :email
   validates_format_of :role, :with => /^(Admin)|(User)$/, :message=>"should be Admin or User"
   validates_format_of :email, :with => /^[\w\d]*[@][\w\d]*[\.][\w\d]*$/, :message=>"email is not applicable"
@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
     temp
   end
   
-  def check_role?(input_role)
-    project_role?(self.traverse_project_id).include?(input_role.to_s.downcase)
+  def check_role?(input_role, project_id)
+    project_role?(project_id).include?(input_role.to_s.downcase)
   end
   
   def role?(input_role)

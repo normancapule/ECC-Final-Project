@@ -103,16 +103,13 @@ load_and_authorize_resource
       errors = ""
       Tag.where(:story_id=>story.id, :project_id=>project.id).delete_all
       tags.each do |tag|
-        Tag.create(:story_id=>story.id, :content=>tag, :project_id=>project.id)
+        x = Tag.create(:story_id=>story.id, :content=>tag, :project_id=>project.id)
+        puts "---------------------------#{x.errors}"
       end
     end
     
     def display_story_tags(story)
-      content = ""
-      story.tags.each do |tag|
-        content << tag.content + ","
-      end
-        content.chop!
+      content = story.tags.map(&:content).join(',')
     end
     
     def average(story_id)
