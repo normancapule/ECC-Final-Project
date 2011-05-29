@@ -13,7 +13,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :role
       t.string :name
       t.string :email
-
+      t.integer :traverse_project_id
       t.timestamps
     end
 
