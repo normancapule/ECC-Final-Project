@@ -5,6 +5,14 @@ text-align: right;
 display: none;
 }
 
+ div#right-sidebar{
+  position:absolute;
+  top: 0px;
+  right: 0;
+  width:350px;
+  height:250px;
+  overflow:auto;
+ }
 
 tr.even { 
 background-color: #99CCCC; 

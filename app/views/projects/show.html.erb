@@ -1,5 +1,5 @@
 <% title "Project" %>
-
+<div id="project" data-id="<%= @project.id %>">
 <p>
   <strong>Creator:</strong>
 <%= User.find(@project.user_id).name %>
@@ -27,10 +27,27 @@
      <li><h4><%=role%></h4></li>
      <% end %>
 </p>
+</div>
+
 <%= render 'form_release' %>
 <h2> Releases </h2>
 <div>
-<%= render 'release' %>
+<table>
+  <tr>
+    <th>Project</th>
+    <th>Name</th>
+    <th>Date Released</th>
+  </tr>
+  
+  <table id="release_table">
+  
+ 
+  <%= render @project.releases %>
+ 
+
+   </table>
+</table>
+
 <%= will_paginate(@releases) %>
 </div>
 <div>
@@ -39,6 +56,20 @@
   <%= render 'backlog' %>
   
 <h2> Project Log </h2>
-  <%= render 'log' %>
-
 </div>
+
+
+  
+   
+<div id="right-sidebar">
+ <% unless @project.logs.empty? %>
+    <div id="logs">
+      <%= render @project.logs %>
+    </div>
+  <% end %>
+</div>
+
+
+ 
+
+

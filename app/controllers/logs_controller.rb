@@ -1,5 +1,9 @@
 class LogsController < ApplicationController
 before_filter :authenticate_user!
+  def index
+     @logs = Log.where("project_id = ? and created_at > ?", params[:project_id], Time.at(params[:after].to_i + 1))
+  end
+
   def new
     @log = Log.new
   end
@@ -14,9 +18,6 @@ before_filter :authenticate_user!
     end
   end
 
-  def index
-    @logs = Log.all
-  end
 
   def show
     @log = Log.find(params[:id])

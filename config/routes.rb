@@ -1,5 +1,5 @@
 ECCFinalProject::Application.routes.draw do
-  #resources :logs
+  resources :logs
 
   resources :projects do
     resources :releases
@@ -14,4 +14,8 @@ ECCFinalProject::Application.routes.draw do
   root :to => "home#index"
 
   devise_for :users
+  
+  
+  
+  
 end
