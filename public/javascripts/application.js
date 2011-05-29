@@ -45,9 +45,6 @@
         $.getScript("/logs.js?project_id=" + project_id + "&after=" + after)
         setTimeout(updateLogs, 8000);
       }
-   
-
-  alert($('#right-sidebar').scrollTop());
-   
+      
   });
       
