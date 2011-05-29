@@ -23,7 +23,9 @@
 
 <p>
 <h3> Your role/s  in this project </h3> 
-     <%= current_user.project_role?(@project) %>
+     <% current_user.project_role?(@project).each do |role| %>
+     <li><h4><%=role%></h4></li>
+     <% end %>
 </p>
 <%= render 'form_release' %>
 <h2> Releases </h2>
