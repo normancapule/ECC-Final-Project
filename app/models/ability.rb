@@ -7,7 +7,9 @@ class Ability < ApplicationController
     if user.role?(:admin)
       can :manage, :all
     elsif user.role? :user
-      if user.check_role?(:creator, session) || user.check_role?(:projectmanager, session)
+      if user.check_role?(:projectowner, session) || 
+         user.check_role?(:projectmanager, session) ||
+         user.check_role?(:creator, session) 
         can :manage, Release
         can :manage, Story
       end
