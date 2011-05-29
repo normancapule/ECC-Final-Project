@@ -1,6 +1,22 @@
 <% title "Edit Userproject" %>
 
-<%= render 'form' %>
+<%= form_for [@project,@userproject] do |f| %>
+  <%= f.error_messages %>
+
+      <%= check_box_tag "user_roles[]", "Owner", (true if @userprojects.include?"Owner")%>
+      <%= "Owner" %>
+      </br>
+      <%= check_box_tag "user_roles[]", "Manager", (true if @userprojects.include?"Manager")%>
+      <%= "Manager" %>
+      </br>
+      <%= check_box_tag "user_roles[]", "Member", (true if @userprojects.include?"Member")%>
+      <%= "Member" %>
+      </br>
+      <%= check_box_tag "user_roles[]", "Developer", (true if @userprojects.include?"Developer")%>
+      <%= "Developer" %>
+      </br>
+ <p><%= f.submit "Update roles" %></p>
+  <% end %>
 
 <p>
   <%= link_to "Show", project_userproject_path(@project, @userproject) %> |

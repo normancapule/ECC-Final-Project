@@ -6,12 +6,11 @@
     <th>Role</th>
   </tr>
   <% for userproject in @userprojects %>
-    <tr>
+    <tr class="<%= cycle("even", "odd") %>">
       <td><%= userproject.user.name %></td>
-      <td><%= userproject.role %></td>
-      <td><%= link_to "Show", project_userproject_path(@project, userproject) %></td>
+      <td><%= Userproject.where(:user_id => userproject.user, :project_id => @project.id).map(&:role).join(', ') %></td>
       <td><%= link_to "Edit", edit_project_userproject_path(@project, userproject) %></td>
-      <td><%= link_to "Destroy", project_userproject_path(@project, userproject), :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Destroy", project_userproject_path(@project, userproject.id), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
