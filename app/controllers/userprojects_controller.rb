@@ -9,25 +9,26 @@ class UserprojectsController < ApplicationController
     
     @project = Project.find(params[:project_id])
     
-    
+    begin
     params[:user_roles].each do |user_roles|
       params[:user_ids].each do |user_id|
         @userproject = Userproject.new(:user_id => user_id, 
                                        :project_id=> params[:project_id], 
                                        :role=> user_roles)
                 
-        @userproject.save
+      @userproject.save
       content = %Q{#{current_user.name} added #{User.find(user_id).name} to project #{@project.project_name} as #{user_roles}}
       log_action(@project, current_user, content)
       end
     end
-    
-    if @userproject.save
+
       redirect_to project_userprojects_path(@project), 
         :notice => "Successfully added member."
-    else
-      render :action => 'new'
+
+    rescue
+       redirect_to new_project_userproject_path(@project)
     end
+    
   end
 
   def index

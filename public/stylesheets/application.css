@@ -6,11 +6,12 @@ display: none;
 }
 
  div#right-sidebar{
+
   position:absolute;
-  top: 0px;
+  top: 60px;
   right: 0;
-  width:350px;
-  height:200px;
+  width:270px;
+  height:600px;
   overflow:auto;
  }
 
@@ -116,4 +117,19 @@ height:15px;
   text-align: center;
   padding-top: 5px;
 }
+
+div.transbox
+  {
+ padding: 20px;
+
+  background-color:#336699;
+  border:1px solid black;
+  color:#fff;
+	text-shadow:0 -1px 0 #39d;
+	padding:4px 10px 5px;
+	font-size:11px;
+
+	font-weight:bold;
+
+  }
 

@@ -37,6 +37,13 @@
     </div>
 	</div>
 </div>
-
+<div id="right-sidebar">
+  <strong>Recent activity</strong>
+ <% unless @project.logs.empty? %>
+    <div id="logs">
+      <%= render @project.logs %>
+    </div>
+  <% end %>
+</div>
   </body>
 </html>
