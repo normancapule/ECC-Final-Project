@@ -11,7 +11,7 @@ display: none;
   top: 10px;
   right: 0;
   width:270px;
-  height:180px;
+  height:45%;
   overflow:auto;
  }
 
@@ -100,35 +100,55 @@ height:15px;
 	left: 0;
 	width: 100%;	
 }
+#header-wrap {
+	position: relative;
+	top: 0px;
+	left: 0;
+	width: 100%;	
+}
 
-#footer-container {
+#footer-container{
 	height: 25px;
 	background: url(/images/bg-btn-blue.png) repeat-x left bottom;
 }
-
-#footer {
+#header-container{
+	height: 25px;
+	background: url(/images/bg-btn-blue.png) repeat-x left bottom;
+}
+#footer, #header {
 	width: 940px;
 	margin: 0 auto;
 	position: relative;
 
 }
+
 #footer_text {
-  color:#3366FF;
+  color:#fff;
+	text-shadow:0 -1px 0 #39d;
+	padding:4px 10px 5px;
+	font-size:11px;
+  font-weight:bold;
   text-align: center;
   padding-top: 5px;
 }
+#header_text a{
+  color:#fff;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+  font-weight:bold;
+  text-align: right;
+}
+
 
 div.transbox
   {
- padding: 20px;
-
+  padding: 20px;
   background-color:#336699;
   border:1px solid black;
   color:#fff;
 	text-shadow:0 -1px 0 #39d;
 	padding:4px 10px 5px;
 	font-size:11px;
-
 	font-weight:bold;
 
   }

@@ -26,7 +26,8 @@ class UserprojectsController < ApplicationController
         :notice => "Successfully added member."
 
     rescue
-       redirect_to new_project_userproject_path(@project)
+       redirect_to new_project_userproject_path(@project),
+       :alert => "Please select both member and role."
     end
     
   end

@@ -12,9 +12,6 @@
       <%= check_box_tag "user_roles[]", "Member", (true if @userprojects.include?"Member")%>
       <%= "Member" %>
       </br>
-      <%= check_box_tag "user_roles[]", "Developer", (true if @userprojects.include?"Developer")%>
-      <%= "Developer" %>
-      </br>
  <p><%= f.submit "Update roles" %></p>
   <% end %>
 

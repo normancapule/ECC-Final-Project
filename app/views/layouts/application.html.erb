@@ -10,7 +10,13 @@
     <%= yield(:head) %>
   </head>
   <body>
-     <div id="nav">
+  
+  
+  <div id="header-wrap">
+	<div id="header-container">
+		<div id="header">
+    <div id="header_text">
+						   <div id="nav">
         <% if user_signed_in? %>
         
         <%= "#{current_user.name}"  %> |
@@ -21,6 +27,12 @@
       
         <% end %>
     </div>
+		</div>
+    </div>
+	</div>
+</div>
+ 
+  
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, :id => "flash_#{name}" %>
     <% end %>
