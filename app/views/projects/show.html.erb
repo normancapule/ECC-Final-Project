@@ -54,10 +54,8 @@
 <%= will_paginate(@releases) %>
 </div>
 <div>
-<% if can?(:manage,Story) %>
 <h2> Backlog List </h2>
   <%= render 'backlog' %>
-<% end %>
 </div>
 
 

@@ -1,8 +1,8 @@
 development:
   adapter: postgresql
   database: ecc_development
-  username: pmdeazeta
-  password: shithead
+  username: normz
+  password: 10831215
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -11,13 +11,13 @@ development:
 test: &test
   adapter: postgresql
   database: ecc_test
-  username: pmdeazeta
-  password: shithead
+  username: normz
+  password: 10831215
   host: localhost
 
 production:
   adapter: postgresql
   database: ecc_production
-  username: pmdeazeta
-  password: shithead
+  username: normz
+  password: 10831215
   host: localhost

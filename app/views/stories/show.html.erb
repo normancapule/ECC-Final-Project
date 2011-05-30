@@ -53,5 +53,19 @@
   <%= link_to "Back to Release [#{@story.release.name}] Page", project_release_path(@project, @story.release )rescue
       link_to "Back to Project [#{@project.project_name}] Page", project_path(@project)%>
 </p>
+<p>
+ <% if !(can?(:update, Story)) %>
+    <% if @story.status == "hold" %>
+      <%= link_to "Start", project_story_start_path(@project,@story)%> 
+    <% elsif @story.status == "start" %>
+      <%= link_to "Finish", project_story_finish_path(@project,@story)%>
+      <%= link_to "Hold", project_story_hold_path(@project,@story)%>
+    <% end %>
+ <% end %>
 
+ <% if @story.status == "finish" %>
+   <%= link_to_if(can?(:update,Story), "Accept", project_story_accept_path(@project,@story)){}%>
+   <%= link_to_if(can?(:update,Story), "Reject", project_story_reject_path(@project,@story)){}%>
+ <% end %>
+</p>
 <%= render 'comment' %>
