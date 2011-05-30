@@ -29,8 +29,14 @@
      <li><h4><%=role%></h4></li>
      <% end %>
 </p>
-
-
+<div id="right-sidebar">
+  <strong>Recent activity</strong>
+ <% unless @project.logs.empty? %>
+    <div id="logs">
+      <%= render @project.logs %>
+    </div>
+  <% end %>
+</div>
 </div>
 
 <% if can?(:manage, Release) %>
