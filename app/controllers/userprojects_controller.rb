@@ -9,12 +9,16 @@ class UserprojectsController < ApplicationController
     
     @project = Project.find(params[:project_id])
     
-    params[:user_ids].each do |user_id|
-      @userproject = Userproject.new(:user_id => user_id, 
-                                     :project_id=> params[:project_id], 
-                                     :role=> params[:userproject][:role])
-      @userproject.save
+    
+    params[:user_roles].each do |user_roles|
+      params[:user_ids].each do |user_id|
+        @userproject = Userproject.new(:user_id => user_id, 
+                                       :project_id=> params[:project_id], 
+                                       :role=> user_roles)
+        @userproject.save
+      end
     end
+    
     if @userproject.save
       redirect_to project_userprojects_path(@project), 
         :notice => "Successfully added member."

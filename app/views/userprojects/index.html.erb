@@ -8,7 +8,7 @@
   <% for userproject in @userprojects %>
     <tr class="<%= cycle("even", "odd") %>">
       <td><%= userproject.user.name %></td>
-      <td><%= Userproject.where(:user_id => userproject.user, :project_id => @project.id).map(&:role).join(', ') %></td>
+      <td><%= Userproject.select("DISTINCT role").where(:user_id => userproject.user, :project_id => @project.id).map(&:role).join(', ') %></td>
       <td><%= link_to "Edit", edit_project_userproject_path(@project, userproject) %></td>
       <td><%= link_to "Destroy", project_userproject_path(@project, userproject.id), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>

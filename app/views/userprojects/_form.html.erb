@@ -7,7 +7,19 @@
       </br>
   <% end %>
   </br>
-  <%= f.label :role %>
-  <%= f.select :role, ["Owner", "Manager", "Member", "Developer"] %>
+  <%= f.label :role %> </br>
+  
+      <%= check_box_tag "user_roles[]", "Owner"%>
+      <%= "Owner" %>
+      </br>
+      <%= check_box_tag "user_roles[]", "Manager"%>
+      <%= "Manager" %>
+      </br>
+      <%= check_box_tag "user_roles[]", "Member"%>
+      <%= "Member" %>
+      </br>
+      <%= check_box_tag "user_roles[]", "Developer"%>
+      <%= "Developer" %>
+  
   <p><%= f.submit "Add Members" %></p>
 <% end %>
