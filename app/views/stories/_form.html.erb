@@ -7,6 +7,9 @@
     Priority: <%= f.select "priority", options_for_select(@priority_values) %>
   </p>
   <p>
+      Assign to: <%= select_tag "assign_to", options_for_select(@system_users.map {|u| u.name}), :include_blank => true %>
+  </p>
+  <p>
     <%= f.label :story_name %><br />
     <%= f.text_field :story_name %>
   </p>
@@ -16,7 +19,7 @@
   </p>
   <p>
     <%= label_tag :tags %><br />
-    <%= text_area_tag :tags, @tags %>
+    <%= text_area_tag :tags, @tags %>:assign_to
   </p>
   <p><%= f.submit %></p>
 <% end %>
