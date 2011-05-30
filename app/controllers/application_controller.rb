@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_ability
+    puts "------------------adasdasd---#{session[:project_id]}"
     @current_ability ||= Ability.new(current_user, session[:project_id])
   end
 end

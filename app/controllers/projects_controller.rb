@@ -43,7 +43,6 @@ load_and_authorize_resource
     @release = Release.new
     @logs = @project.logs
     session[:project_id] = @project.id
-
   end
 
   def destroy
