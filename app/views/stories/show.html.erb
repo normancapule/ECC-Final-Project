@@ -19,7 +19,9 @@
 </p>
 <p>
   <strong>Assigned To:</strong>
-  <%= @story.user.name %>
+  <% if @story.user!= nil  %>
+    <%= @story.user.name %>
+  <% end %>
 </p>
 <p>
   <strong>Priority:</strong>

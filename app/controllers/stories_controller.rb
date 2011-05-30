@@ -13,7 +13,12 @@ load_and_authorize_resource
   def create
     @project = Project.find(params[:project_id])
     @story = @project.stories.new(params[:story])
-    @story.user_id = User.where(:name=>params[:assign_to]).first.id
+    temp = User.where(:name=>params[:assign_to])
+    if temp.count > 0
+      @story.user_id = temp.first.id
+    else
+      @story.user_id = 0
+    end
     release_checker(@story, @project)
     if @story.save
       content = %Q{#{current_user.name} has created the Story #{@story.story_name}}
@@ -66,8 +71,14 @@ load_and_authorize_resource
     @project = Project.find(params[:project_id])
     @story = @project.stories.find(params[:id])
     release_checker(@story, @project)
-    @story.user_id = User.where(:name=>params[:assign_to]).first.id
+    temp = User.where(:name=>params[:assign_to])
+    if temp.count > 0
+      @story.user_id = temp.first.id
+    else
+      @story.user_id = 0
+    end
     if @story.update_attributes(params[:story])
+      tag_control(params[:tags], @story, @project)
       content = %Q{#{current_user.name} has updated the Story #{@story.story_name}}
       log_action(@project, current_user, content)
       redirect_to project_story_path(@project, @story), 
@@ -115,8 +126,8 @@ load_and_authorize_resource
     end
     
     def tag_control(param, story, project)
+      puts "------------------------------------"
       tags = param.gsub(/[\s]/, "").downcase.split(",")
-      errors = ""
       Tag.where(:story_id=>story.id, :project_id=>project.id).delete_all
       tags.each do |tag|
         Tag.create(:story_id=>story.id, :content=>tag, :project_id=>project.id)
