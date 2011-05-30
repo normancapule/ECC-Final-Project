@@ -3,8 +3,8 @@
       <td><%= project.project_name %></td>
       <td><%= project.project_description %></td>
       <td><%= link_to "Show", project %></td>
-      <td><%= link_to_if(can?(:update,current_user),"Edit", edit_project_path(project)) {} %></td>
-      <td><%= link_to_if(can?(:delete, current_user),"Destroy", project, 
+      <td><%= link_to_if(can?(:update,Project),"Edit", edit_project_path(project)) {} %></td>
+      <td><%= link_to_if(can?(:delete,Project),"Destroy", project, 
                               :confirm => 'Are you sure?', 
                               :method => :delete, 
                               :remote => true, 
