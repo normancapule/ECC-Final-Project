@@ -33,7 +33,7 @@ load_and_authorize_resource
   def index
     @projects = current_user.projects.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
     @project = Project.new
-    session[:project_id] = @project.id
+    session[:project_id] = nil
   end
 
   def show
