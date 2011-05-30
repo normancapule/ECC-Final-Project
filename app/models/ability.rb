@@ -1,4 +1,4 @@
-class Ability < ApplicationController
+class Ability
   include CanCan::Ability
   
   def initialize(user, session)

@@ -72,4 +72,8 @@ load_and_authorize_resource
   def edit
     @project = Project.find(params[:id])
   end
+  
+  def refresh_ability
+    current_ability
+  end
 end

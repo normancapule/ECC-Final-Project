@@ -4,6 +4,10 @@ ECCFinalProject::Application.routes.draw do
   resources :projects do
     resources :releases
     resources :stories do 
+      put 'finish'
+      put 'hold'
+      put 'accept'
+      put 'reject'
       resources :comments, :only => [:create, :update, :destroy]
       resources :ratings
       resources :tags

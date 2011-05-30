@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528052004) do
+ActiveRecord::Schema.define(:version => 20110625053024) do
 
   create_table "comments", :force => true do |t|
     t.integer  "story_id"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20110528052004) do
     t.string   "priority"
     t.string   "story_name"
     t.string   "story_description"
-    t.string   "status"
+    t.string   "status",            :default => "start"
     t.string   "tag"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20110528052004) do
     t.integer  "user_id"
     t.integer  "project_id"
     t.string   "role"
+    t.string   "role_description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -94,7 +95,6 @@ ActiveRecord::Schema.define(:version => 20110528052004) do
     t.string   "last_sign_in_ip"
     t.string   "role"
     t.string   "name"
-    t.integer  "traverse_project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

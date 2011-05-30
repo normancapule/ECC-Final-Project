@@ -7,7 +7,6 @@ load_and_authorize_resource
     @story = @project.stories.new
     @releases = @project.releases
     @priority_values = ["High", "Medium", "Low"]
-    @status_values = ["Start", "Finish", "Hold", "Reject", "Accept"]
   end
 
   def create
@@ -83,11 +82,39 @@ load_and_authorize_resource
     @story = @project.stories.find(params[:id])
     @releases = @project.releases
     @priority_values = ["High", "Medium", "Low"]
-    @status_values = ["Start", "Finish", "Hold", "Reject", "Accept"]
     @tags = display_story_tags(@story)
   end
   
-
+  def finish
+    @project = Project.find(params[:project_id])
+    @story = @project.stories.find(params[:story_id])
+    @story.status = "finish"
+    @story.save
+    redirect_to project_story_path(@project, @story)
+  end
+  def hold
+    @project = Project.find(params[:project_id])
+    @story = @project.stories.find(params[:story_id])
+    @story.status = "hold"
+    @story.save
+    redirect_to project_story_path(@project, @story)
+  end
+  
+  def accept
+    @project = Project.find(params[:project_id])
+    @story = @project.stories.find(params[:story_id])
+    @story.status = "accept"
+    @story.save
+    redirect_to project_story_path(@project, @story)
+  end
+  def reject
+    @project = Project.find(params[:project_id])
+    @story = @project.stories.find(params[:story_id])
+    @story.status = "reject"
+    @story.save
+    redirect_to project_story_path(@project, @story)
+  end
+  
   private
     def release_checker(story, project)
       if(params[:release]!= "")
