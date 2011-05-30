@@ -1,0 +1,6 @@
+<% title "New System User" %>
+
+<%= form_for @user, :url=> system_user_index_path(@user), :method => :post do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+<p><%= link_to "Back", root_path %></p>

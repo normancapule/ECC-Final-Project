@@ -1,0 +1,7 @@
+<% title "Edit System User" %>
+
+<%= form_for @user, :url=> system_user_path(@user), :method => :put do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+
+<p><%= link_to "Back", root_path %></p>

@@ -1,6 +1,8 @@
 ECCFinalProject::Application.routes.draw do
   resources :logs
-
+  
+  resources :system_user
+  
   resources :projects do
     resources :releases
     resources :stories do 
