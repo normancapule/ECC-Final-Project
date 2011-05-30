@@ -7,12 +7,13 @@ load_and_authorize_resource
     @story = @project.stories.new
     @releases = @project.releases
     @priority_values = ["High", "Medium", "Low"]
+    @system_users = User.where(:role=>"User")
   end
 
   def create
     @project = Project.find(params[:project_id])
     @story = @project.stories.new(params[:story])
-    @story.user_id = current_user.id
+    @story.user_id = User.where(:name=>params[:assign_to]).first.id
     release_checker(@story, @project)
     if @story.save
       content = %Q{#{current_user.name} has created the Story #{@story.story_name}}
@@ -65,6 +66,7 @@ load_and_authorize_resource
     @project = Project.find(params[:project_id])
     @story = @project.stories.find(params[:id])
     release_checker(@story, @project)
+    @story.user_id = User.where(:name=>params[:assign_to]).first.id
     if @story.update_attributes(params[:story])
       content = %Q{#{current_user.name} has updated the Story #{@story.story_name}}
       log_action(@project, current_user, content)
@@ -83,6 +85,7 @@ load_and_authorize_resource
     @releases = @project.releases
     @priority_values = ["High", "Medium", "Low"]
     @tags = display_story_tags(@story)
+    @system_users = User.where(:role=>"User")
   end
 
   def start
@@ -92,7 +95,6 @@ load_and_authorize_resource
     change_status("finish")
   end
   def hold
-    puts "------------------------"
     change_status("hold")
   end
   def accept
@@ -117,8 +119,7 @@ load_and_authorize_resource
       errors = ""
       Tag.where(:story_id=>story.id, :project_id=>project.id).delete_all
       tags.each do |tag|
-        x = Tag.create(:story_id=>story.id, :content=>tag, :project_id=>project.id)
-        puts "---------------------------#{x.errors}"
+        Tag.create(:story_id=>story.id, :content=>tag, :project_id=>project.id)
       end
     end
     
