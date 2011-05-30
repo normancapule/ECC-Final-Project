@@ -11,7 +11,7 @@ class Ability
       can :finish, Story
       can :hold, Story
       can :accept, Story 
-      can :reject, Story           
+      can :reject, Story
       can :create, Comment
       can :create, Rating
       can :read, Project
