@@ -15,7 +15,10 @@ class UserprojectsController < ApplicationController
         @userproject = Userproject.new(:user_id => user_id, 
                                        :project_id=> params[:project_id], 
                                        :role=> user_roles)
+                
         @userproject.save
+      content = %Q{#{current_user.name} added #{User.find(user_id).name} to project #{@project.project_name} as #{user_roles}}
+      log_action(@project, current_user, content)
       end
     end
     

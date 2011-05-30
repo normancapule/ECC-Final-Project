@@ -10,7 +10,7 @@ display: none;
   top: 0px;
   right: 0;
   width:350px;
-  height:250px;
+  height:200px;
   overflow:auto;
  }
 
@@ -33,6 +33,7 @@ padding:10px;
 border: 1px;
 border-spacing:0px 0px;
 color:#3366FF;
+text-align: left;
 }
 table
 {

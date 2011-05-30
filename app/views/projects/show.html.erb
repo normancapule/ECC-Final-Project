@@ -29,6 +29,15 @@
      <li><h4><%=role%></h4></li>
      <% end %>
 </p>
+<div id="right-sidebar">
+  <strong>Recent activity</strong>
+ <% unless @project.logs.empty? %>
+    <div id="logs">
+      <%= render @project.logs %>
+    </div>
+  <% end %>
+</div>
+
 </div>
 
 <% if can?(:manage, Release) %>
@@ -36,11 +45,12 @@
 <% end %>
 <h2> Releases </h2>
 <div>
+
 <table>
-  <tr>
-    <th>Project</th>
+  <tr >
     <th>Name</th>
     <th>Date Released</th>
+    <th colspan="3">Actions</th>
   </tr>
   
   <table id="release_table">
@@ -57,12 +67,5 @@
 <% end %>
 </div>
 
-<div id="right-sidebar">
- <% unless @project.logs.empty? %>
-    <div id="logs">
-      <%= render @project.logs %>
-    </div>
-  <% end %>
-</div>
 
 

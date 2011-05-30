@@ -134,6 +134,18 @@ a.signin.menu-open span {
 #signin_menu p a {
 	color:#27B!important;
 }
+.button {
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	background:#39d url('/images/bg-btn-blue.png') repeat-x scroll 0 0;
+	border:1px solid #39D;
+	color:#fff;
+	text-shadow:0 -1px 0 #39d;
+	padding:4px 10px 5px;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+}
 #signin_submit {
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
@@ -150,7 +162,7 @@ a.signin.menu-open span {
 padding:0;
 border:0;
 }
-#signin_submit:hover, #signin_submit:focus {
+#signin_submit:hover, #signin_submit:focus, .button:hover, .button:focus {
 	background-position:0 -5px;
 	cursor:pointer;
 }

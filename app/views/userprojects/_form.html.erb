@@ -1,5 +1,6 @@
 <%= form_for [@project,@userproject] do |f| %>
   <%= f.error_messages %>
+  <strong>Select member</strong></br>
   <% for user in @user %>
     
       <%= check_box_tag "user_ids[]", user.id %>
@@ -7,7 +8,7 @@
       </br>
   <% end %>
   </br>
-  <%= f.label :role %> </br>
+  <strong><%= f.label :role %></strong> </br>
   
       <%= check_box_tag "user_roles[]", "Owner"%>
       <%= "Owner" %>
