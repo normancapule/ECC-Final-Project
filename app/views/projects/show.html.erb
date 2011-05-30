@@ -14,11 +14,13 @@
 </p>
 
 <p>
-  <%= link_to "Back to Project Page", projects_path %> |
-  <%= link_to_if(can?(:update,current_user), "Edit", edit_project_path(@project)){} %> |
-  <%= link_to_if(can?(:update,current_user), "Destroy", @project, :confirm => 'Are you sure?', :method => :delete){} %> |
-  <%= link_to_if(can?(:create,current_user), "New Story", new_project_story_path(@project)){} %> |
-  <%= link_to_if(can?(:manage,current_user), "Members", project_userprojects_path(@project)){}%>
+  <%= link_to_if(can?(:update,Project), "Edit |", edit_project_path(@project)){} %>
+  <%= link_to_if(can?(:delete,Project), "Destroy |", @project, 
+                      :confirm => 'Are you sure?', 
+                      :method => :delete){} %>
+  <%= link_to_if(can?(:create,Story), "New Story |", new_project_story_path(@project)){} %>
+  <%= link_to_if(can?(:manage,current_user), "Members |", project_userprojects_path(@project)){}%>
+  <%= link_to "Back to Project Page", projects_path %>
 </p>
 
 <p>
@@ -29,7 +31,9 @@
 </p>
 </div>
 
-<%= render 'form_release' %>
+<% if can?(:manage, Release) %>
+  <%= render 'form_release' %>
+<% end %>
 <h2> Releases </h2>
 <div>
 <table>
@@ -47,7 +51,7 @@
 <%= will_paginate(@releases) %>
 </div>
 <div>
-<% if can?(:manage,current_user) %>
+<% if can?(:manage,Story) %>
 <h2> Backlog List </h2>
   <%= render 'backlog' %>
 <% end %>

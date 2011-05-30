@@ -14,8 +14,10 @@
 </p>
 
 <p>
-  <%= link_to "Edit", edit_project_release_path(@project, @release) %> |
-  <%= link_to "Destroy", project_release_path(@project, @release), :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to_if(can?(:update,Release),"Edit |", edit_project_release_path(@project, @release)){} %>
+  <%= link_to_if(can?(:delete,Release),"Destroy |", project_release_path(@project, @release), 
+                      :confirm => 'Are you sure?', 
+                      :method => :delete){}%>
   <%= link_to "Back to Project [#{@project.project_name}] Page", project_path(@project) %>
 </p>
 
