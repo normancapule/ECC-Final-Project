@@ -86,33 +86,16 @@ load_and_authorize_resource
   end
   
   def finish
-    @project = Project.find(params[:project_id])
-    @story = @project.stories.find(params[:story_id])
-    @story.status = "finish"
-    @story.save
-    redirect_to project_story_path(@project, @story)
+    change_status("finish")
   end
   def hold
-    @project = Project.find(params[:project_id])
-    @story = @project.stories.find(params[:story_id])
-    @story.status = "hold"
-    @story.save
-    redirect_to project_story_path(@project, @story)
+    change_status("hold")
   end
-  
   def accept
-    @project = Project.find(params[:project_id])
-    @story = @project.stories.find(params[:story_id])
-    @story.status = "accept"
-    @story.save
-    redirect_to project_story_path(@project, @story)
+    change_status("accept")
   end
   def reject
-    @project = Project.find(params[:project_id])
-    @story = @project.stories.find(params[:story_id])
-    @story.status = "reject"
-    @story.save
-    redirect_to project_story_path(@project, @story)
+    change_status("reject")
   end
   
   private
@@ -155,6 +138,14 @@ load_and_authorize_resource
       else
           rated = true
       end
+    end
+    
+    def change_status(string)
+      @project = Project.find(params[:project_id])
+      @story = @project.stories.find(params[:story_id])
+      @story.status = string
+      @story.save
+      redirect_to project_story_path(@project, @story)
     end
 end
 

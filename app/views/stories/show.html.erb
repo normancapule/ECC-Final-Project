@@ -54,10 +54,10 @@
       link_to "Back to Project [#{@project.project_name}] Page", project_path(@project)%>
 </p>
 <p>
- <%= button_to "Finish", project_story_finish_path(@project,@story), :method=>:put%>
- <%= button_to "Hold", project_story_hold_path(@project,@story), :method=>:put%>
+ <%= link_to "Finish", project_story_finish_path(@project,@story), :method=>:put%>
+ <%= link_to "Hold", project_story_hold_path(@project,@story), :method=>:put%>
  
- <%= button_to "Accept", project_story_accept_path(@project,@story), :method=>:put%>
- <%= button_to "Reject", project_story_reject_path(@project,@story), :method=>:put%>
+ <%= link_to "Accept", project_story_accept_path(@project,@story), :method=>:put%>
+ <%= link_to "Reject", project_story_reject_path(@project,@story), :method=>:put%>
 </p>
 <%= render 'comment' %>
