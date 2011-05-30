@@ -41,8 +41,6 @@ load_and_authorize_resource
     @releases = @project.releases.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
     @backlog_list = @project.stories.where(:release_id => nil)
     @release = Release.new
-    current_user.traverse_project_id = @project.id #damn hack
-    current_user.save
     @logs = @project.logs
     session[:project_id] = @project.id
 

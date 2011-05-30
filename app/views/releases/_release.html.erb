@@ -3,7 +3,8 @@
       <td><%= release.name %></td>
       <td><%= release.date_released %></td>
       <td><%= link_to "Show", project_release_path(@project, release) %></td>
-      <td><%= link_to "Edit", edit_project_release_path(@project, release) %></td>
+      <td><%= link_to_if(can?(:update,current_user),"Edit", 
+                         edit_project_release_path(@project, release)){} %></td>
       <td><%= link_to "Destroy", project_release_path(@project, release), :confirm => 'Are you sure?', 
             :method => :delete,  :remote => true, :class=>'delete_post' %></td>
     </tr>

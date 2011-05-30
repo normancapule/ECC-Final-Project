@@ -1,4 +1,6 @@
-<%= render 'form'%>
+<% if can?(:create,current_user) %>
+  <%= render 'form'%>
+<% end %>
   <table>
    <tr>
     <th>Creator</th>

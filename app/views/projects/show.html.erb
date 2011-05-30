@@ -14,11 +14,11 @@
 </p>
 
 <p>
-  <%= link_to "Edit", edit_project_path(@project) %> |
-  <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "Back to Project Page", projects_path %> |
-  <%= link_to "New Story", new_project_story_path(@project) %> |
-  <%= link_to "Members", project_userprojects_path(@project) %>
+  <%= link_to_if(can?(:update,current_user), "Edit", edit_project_path(@project)){} %> |
+  <%= link_to_if(can?(:update,current_user), "Destroy", @project, :confirm => 'Are you sure?', :method => :delete){} %> |
+  <%= link_to_if(can?(:create,current_user), "New Story", new_project_story_path(@project)){} %> |
+  <%= link_to_if(can?(:manage,current_user), "Members", project_userprojects_path(@project)){}%>
 </p>
 
 <p>
@@ -40,27 +40,19 @@
   </tr>
   
   <table id="release_table">
-  
- 
-  <%= render @project.releases %>
- 
-
+    <%= render @project.releases %>
    </table>
 </table>
 
 <%= will_paginate(@releases) %>
 </div>
 <div>
+<% if can?(:manage,current_user) %>
 <h2> Backlog List </h2>
-
   <%= render 'backlog' %>
-  
-<h2> Project Log </h2>
+<% end %>
 </div>
 
-
-  
-   
 <div id="right-sidebar">
  <% unless @project.logs.empty? %>
     <div id="logs">
@@ -68,8 +60,5 @@
     </div>
   <% end %>
 </div>
-
-
- 
 
 
