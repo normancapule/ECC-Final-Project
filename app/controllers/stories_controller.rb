@@ -84,18 +84,22 @@ load_and_authorize_resource
     @priority_values = ["High", "Medium", "Low"]
     @tags = display_story_tags(@story)
   end
-  
+
+  def start
+    change_status("start")
+  end
   def finish
     change_status("finish")
   end
   def hold
+    puts "------------------------"
     change_status("hold")
   end
   def accept
-    change_status("accept")
+    change_status("close")
   end
   def reject
-    change_status("reject")
+    change_status("start")
   end
   
   private

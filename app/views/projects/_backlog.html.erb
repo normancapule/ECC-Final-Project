@@ -14,8 +14,10 @@
       <td><%= story.story_description %></td>
       <td><%= story.status %></td>
       <td><%= link_to "Show", project_story_path(@project, story) %></td>
-      <td><%= link_to "Edit", edit_project_story_path(@project, story) %></td>
-      <td><%= link_to "Destroy", project_story_path(@project, story), :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to_if(can?(:update,Story),"Edit", edit_project_story_path(@project, story)){} %></td>
+      <td><%= link_to_if(can?(:delete,Story),"Destroy", project_story_path(@project, story), 
+                              :confirm => 'Are you sure?', 
+                              :method => :delete) {} %></td>
     </tr>
   <% end %>
 </table>
