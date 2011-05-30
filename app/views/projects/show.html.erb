@@ -29,21 +29,25 @@
      <li><h4><%=role%></h4></li>
      <% end %>
 </p>
-<div id="right-sidebar">
-  <strong>Recent activity</strong>
- <% unless @project.logs.empty? %>
-    <div id="logs">
-      <%= render @project.logs %>
-    </div>
-  <% end %>
-</div>
+
+
+  <div id="right-sidebar">
+    <strong>Recent activity</strong>
+   <% unless @project.logs.empty? %>
+      <div id="logs">
+        <%= render @project.logs %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
+
+<div>
 <% if can?(:manage, Release) %>
   <%= render 'form_release' %>
 <% end %>
 <h2> Releases </h2>
-<div>
+
 
 <table>
   <tr >
