@@ -16,10 +16,12 @@
       <td><%= story.story_description %></td>
       <td><%= story.status %></td>
       <td><%= link_to"Show", project_story_path(@project, story) %></td>
+      <% if story.release.date_released == nil %>
       <td><%= link_to_if(can?(:update,Release),"Edit", edit_project_story_path(@project, story)){} %></td>
       <td><%= link_to_if(can?(:delete,Release),"Destroy", project_story_path(@project, story), 
                               :confirm => 'Are you sure?', 
                               :method => :delete){} %></td>
+      <% end %>
     </tr> 
   <% end %>
 </table>

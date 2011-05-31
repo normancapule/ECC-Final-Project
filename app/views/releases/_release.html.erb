@@ -2,6 +2,7 @@
       <td><%= release.name %></td>
       <td><%= release.date_released %></td>
       <td><%= link_to "Show", project_release_path(@project, release) %></td>
+      <% if release.date_released == nil %>
       <td><%= link_to_if(can?(:update,Release),"Edit", 
                          edit_project_release_path(@project, release)){} %></td>
       <td><%= link_to_if(can?(:delete,Release), "Destroy", 
@@ -10,4 +11,5 @@
                               :method => :delete, 
                               :remote => true, 
                               :class=>'delete_post'){} %></td>
+      <% end %>
     </tr>
