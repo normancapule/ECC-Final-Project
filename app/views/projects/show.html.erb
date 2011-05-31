@@ -14,6 +14,7 @@
 </p>
 
 <p>
+<% if @project.status == "alive" %>
  <%= link_to_if(can?(:update,Project), ("<input type=button  class='button' value='Edit'>").html_safe, edit_project_path(@project)){} %>
   <%= link_to_if(can?(:delete,Project), ("<input type=button  class='button' value='Delete'>").html_safe, @project, 
                       :confirm => 'Are you sure?', 
@@ -22,7 +23,7 @@
   <%= link_to_if(can?(:manage,current_user), ("<input type=button  class='button' value='Members'>").html_safe, project_userprojects_path(@project)){}%>
   <%= link_to ("<input type=button  class='button' value='Back'>").html_safe, projects_path %>
 </p>
-
+<% end %>
 <p>
 <h3> Your role/s  in this project </h3> 
      <% current_user.project_role?(@project).each do |role| %>
@@ -30,14 +31,17 @@
      <% end %>
 </p>
 
-
-<input type=button id = "new_rel" class="button" value="New Release">
 </div>
 
 
+
 <div>
+<% if @project.status == "alive" %>
+<input type=button id = "new_rel" class="button" value="New Release">
+
 <% if can?(:manage, Release) %>
   <%= render 'form_release' %>
+<% end %>
 <% end %>
 <h2> Releases </h2>
 
