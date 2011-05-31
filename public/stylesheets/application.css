@@ -6,9 +6,8 @@ display: none;
 }
 
  div#right-sidebar{
-
   position:absolute;
-  top: 10px;
+  top: 75px;
   right: 0;
   width:270px;
   height:45%;
@@ -96,7 +95,7 @@ height:15px;
 
 #footer-wrap {
 	position: relative;
-	top: 400px;
+	top: 580px;
 	left: 0;
 	width: 100%;	
 }
@@ -108,6 +107,7 @@ height:15px;
 }
 
 #footer-container{
+
 	height: 25px;
 	background: url(/images/bg-btn-blue.png) repeat-x left bottom;
 }
@@ -142,6 +142,14 @@ height:15px;
 
 div.transbox
   {
+  -moz-border-radius-topleft:5px;
+  -moz-border-radius-topright:5px;
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-webkit-border-top-left-radius:5px;
+  -webkit-border-top-right-radius:5px;
+	-webkit-border-bottom-left-radius:5px;
+	-webkit-border-bottom-right-radius:5px;
   padding: 20px;
   background-color:#336699;
   border:1px solid black;
@@ -150,6 +158,16 @@ div.transbox
 	padding:4px 10px 5px;
 	font-size:11px;
 	font-weight:bold;
+  
+  z-index:100;
+	border:1px transparent;
+	text-align:left;
+	padding:12px;
+	top: 24.5px; 
+	right: 0px; 
+	margin-top:0px;
+	margin-right: 0px;
+
 
   }
 

@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
 before_filter :authenticate_user!
 load_and_authorize_resource
-
+layout 'alternative'
   def new
     @project = Project.find(params[:project_id])
     @story = @project.stories.new

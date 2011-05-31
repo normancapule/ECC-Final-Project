@@ -48,26 +48,26 @@
   <%= @tags %>
 </p>
 <p>
-  <%= link_to_if(can?(:update,Story),"Edit |", edit_project_story_path(@project, @story)){} %>
-  <%= link_to_if(can?(:delete,Story),"Destroy |", project_story_path(@project,@story), 
+  <%= link_to_if(can?(:update,Story),("<input type=button  class='button' value='Edit'>").html_safe, edit_project_story_path(@project, @story)){} %>
+  <%= link_to_if(can?(:delete,Story),("<input type=button  class='button' value='Delete'>").html_safe, project_story_path(@project,@story), 
                       :confirm => 'Are you sure?', 
                       :method => :delete){} %>
-  <%= link_to "Back to Release [#{@story.release.name}] Page", project_release_path(@project, @story.release )rescue
-      link_to "Back to Project [#{@project.project_name}] Page", project_path(@project)%>
+  <%= link_to ("<input type=button  class='button' value='Back to Release #{@story.release.name} Page'>").html_safe, project_release_path(@project, @story.release )rescue
+      link_to ("<input type=button  class='button' value='Back to Project #{@project.project_name} Page'>").html_safe, project_path(@project)%>
 </p>
 <p>
  <% if !(can?(:update, Story)) %>
     <% if @story.status == "hold" %>
-      <%= link_to "Start", project_story_start_path(@project,@story)%> 
+      <%= link_to ("<input type=button  class='button' value='Start'>").html_safe, project_story_start_path(@project,@story)%> 
     <% elsif @story.status == "start" %>
-      <%= link_to "Finish", project_story_finish_path(@project,@story)%>
-      <%= link_to "Hold", project_story_hold_path(@project,@story)%>
+      <%= link_to ("<input type=button  class='button' value='Finish'>").html_safe, project_story_finish_path(@project,@story)%>
+      <%= link_to ("<input type=button  class='button' value='Hold'>").html_safe, project_story_hold_path(@project,@story)%>
     <% end %>
  <% end %>
 
  <% if @story.status == "finish" %>
-   <%= link_to_if(can?(:update,Story), "Accept", project_story_accept_path(@project,@story)){}%>
-   <%= link_to_if(can?(:update,Story), "Reject", project_story_reject_path(@project,@story)){}%>
+   <%= link_to_if(can?(:update,Story), ("<input type=button  class='button' value='Accept'>").html_safe, project_story_accept_path(@project,@story)){}%>
+   <%= link_to_if(can?(:update,Story), ("<input type=button  class='button' value='Reject'>").html_safe, project_story_reject_path(@project,@story)){}%>
  <% end %>
 </p>
 <%= render 'comment' %>

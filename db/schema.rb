@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(:version => 20110625053024) do
     t.integer  "user_id"
     t.integer  "project_id"
     t.string   "role"
-    t.string   "role_description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

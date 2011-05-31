@@ -1,12 +1,15 @@
-<p><input type=button id = "new_rel" class="button" value="New Release"></p>
+
+
+<div id=release_menu>
 <%= form_for [@project,@release], :remote=>true do |f| %>
   <%= f.error_messages %>
-  <p>
+  
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-  </p>
-  <p>
+  
+  
     Release Now?<%= check_box_tag 'release_query', 'yes', false %>
-  </p>
-  <p><%= f.submit %></p>
+  
+<%= f.submit %>
 <% end %>
+</div>

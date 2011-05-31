@@ -1,6 +1,6 @@
 class RatingsController < ApplicationController
 load_and_authorize_resource
-
+layout 'alternative'
   def new
     @rating = Rating.new
   end

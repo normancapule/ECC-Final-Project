@@ -1,3 +1,4 @@
+<div class="new_form">
 <%= form_for [@project,@story] do |f| %>
   <%= f.error_messages %>
   <p>
@@ -15,7 +16,7 @@
   </p>
   <p>
     <%= f.label :story_description %><br />
-    <%= f.text_area :story_description %>
+    <%= f.text_area :story_description,:rows => "6px" %>
   </p>
   <p>
     <%= label_tag :tags %><br />
@@ -23,3 +24,4 @@
   </p>
   <p><%= f.submit %></p>
 <% end %>
+</div>

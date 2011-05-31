@@ -1,4 +1,5 @@
 class UserprojectsController < ApplicationController
+layout 'alternative'
   def new
     @project = Project.find(params[:project_id])
     @userproject = Userproject.new

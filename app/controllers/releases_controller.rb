@@ -1,7 +1,7 @@
 class ReleasesController < ApplicationController
 before_filter :authenticate_user!
 load_and_authorize_resource
-
+layout 'alternative'
   def new
     @project = Project.find(params[:project_id])
     @release = @project.releases.new

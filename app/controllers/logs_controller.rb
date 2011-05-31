@@ -1,6 +1,7 @@
 class LogsController < ApplicationController
 before_filter :authenticate_user!
 load_and_authorize_resource
+layout 'alternative'
   def index
      @logs = Log.where("project_id = ? and created_at > ?", params[:project_id], Time.at(params[:after].to_i + 1))
   end
