@@ -79,6 +79,9 @@ load_and_authorize_resource
     @project = Project.find(params[:project_id])
     @project.status = "alive"
     @project.save
-      redirect_to projects_path
+    respond_to do |format|
+      format.html { redirect_to(projects_url) }
+      format.js   { render :nothing => true }
+    end
   end
 end
