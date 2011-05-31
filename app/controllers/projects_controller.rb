@@ -31,7 +31,8 @@ layout 'alternative'
   end
 
   def index
-    @projects = current_user.projects.find(:all, :order => "created_at DESC").uniq.paginate(:page => params[:page], :per_page => 10)
+    @projects = current_user.projects.where(:status => "alive").uniq.paginate(:page => params[:page], :per_page => 10)
+    @dead_projects = current_user.projects.where(:status => "dead")
     @project = Project.new
     session[:project_id] = nil
   end
@@ -47,7 +48,8 @@ layout 'alternative'
 
   def destroy
     @project = Project.find(params[:id])
-    @project.destroy
+    @project.status = "dead"
+    @project.save
     content = %Q{#{current_user.name} has destroyed the Project #{@project.project_name}}
     log_action(@project, current_user, content)
     respond_to do |format|
@@ -73,7 +75,13 @@ layout 'alternative'
     @project = Project.find(params[:id])
   end
   
-  def refresh_ability
-    current_ability
+  def restore
+    @project = Project.find(params[:project_id])
+    @project.status = "alive"
+    @project.save
+    respond_to do |format|
+      format.html { redirect_to(projects_url) }
+      format.js   { render :nothing => true }
+    end
   end
 end

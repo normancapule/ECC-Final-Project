@@ -4,7 +4,7 @@ class CreateProjects < ActiveRecord::Migration
       t.integer :user_id
       t.string :project_name
       t.string :project_description
-
+      t.string :status, :default => "alive"
       t.timestamps
     end
   end

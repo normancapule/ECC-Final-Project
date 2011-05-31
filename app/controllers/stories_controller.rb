@@ -5,7 +5,7 @@ layout 'alternative'
   def new
     @project = Project.find(params[:project_id])
     @story = @project.stories.new
-    @releases = @project.releases
+    @releases = @project.releases.where(:date_released => nil)
     @priority_values = ["High", "Medium", "Low"]
     @system_users = User.where(:role=>"User")
   end

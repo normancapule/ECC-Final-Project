@@ -48,12 +48,17 @@
   <%= @tags %>
 </p>
 <p>
+<% if @story.release.date_released == nil %>
   <%= link_to_if(can?(:update,Story),("<input type=button  class='button' value='Edit'>").html_safe, edit_project_story_path(@project, @story)){} %>
   <%= link_to_if(can?(:delete,Story),("<input type=button  class='button' value='Delete'>").html_safe, project_story_path(@project,@story), 
                       :confirm => 'Are you sure?', 
                       :method => :delete){} %>
+<% end %>                      
   <%= link_to ("<input type=button  class='button' value='Back to Release #{@story.release.name} Page'>").html_safe, project_release_path(@project, @story.release )rescue
       link_to ("<input type=button  class='button' value='Back to Project #{@project.project_name} Page'>").html_safe, project_path(@project)%>
+
+
+
 </p>
 <p>
  <% if !(can?(:update, Story)) %>

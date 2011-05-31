@@ -4,6 +4,7 @@ ECCFinalProject::Application.routes.draw do
   resources :system_user
   
   resources :projects do
+    get 'restore'
     resources :releases
     resources :stories do 
       get 'start'

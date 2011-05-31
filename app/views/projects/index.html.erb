@@ -14,3 +14,17 @@
   <%= render @projects %>
 </table>
 <%= will_paginate(@projects) %>
+
+<h2> Dead Projects </h2>
+  <table>
+   <tr>
+    <th>Creator</th>
+    <th>Project Name</th>
+    <th>Project Description</th>
+    <th colspan="3">Actions</th>
+ 
+  </tr>
+  </table>
+<table id="dead_projects_table">
+  <%= render 'dead' %>
+</table>
