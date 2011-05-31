@@ -14,10 +14,12 @@
 </p>
 
 <p>
+<% if @release.date_released == nil %>
   <%= link_to_if(can?(:update,Release),("<input type=button  class='button' value='Edit'>").html_safe, edit_project_release_path(@project, @release)){} %>
   <%= link_to_if(can?(:delete,Release),("<input type=button  class='button' value='Delete'>").html_safe, project_release_path(@project, @release), 
                       :confirm => 'Are you sure?', 
                       :method => :delete){}%>
+<% end %>
   <%= link_to ("<input type=button  class='button' value='Back to Project #{@project.project_name} Page'>").html_safe, project_path(@project) %>
 </p>
 
