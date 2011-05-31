@@ -1,0 +1,9 @@
+<% @dead_projects.each do |dead| %>
+    <tr class="<%= cycle("even", "odd") %>">
+      <td><%= User.find(dead.user_id).name %></td>
+      <td><%= dead.project_name %></td>
+      <td><%= dead.project_description %></td>
+      <td><%= link_to "Show", dead %></td>
+      <td><%= link_to_if(can?(:update,Project),"Restore", project_restore_path(dead)) {} %></td>
+    </tr>
+<% end %>
